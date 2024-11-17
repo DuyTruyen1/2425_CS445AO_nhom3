@@ -16,9 +16,8 @@ return [
             'provider' => 'admin',  // Ensure it points to the correct provider ('admin')
         ],
         'api' => [
-            'driver' => 'token',
+            'driver' => 'sanctum',
             'provider' => 'users',
-            'hash' => false,
         ],
     ],
 

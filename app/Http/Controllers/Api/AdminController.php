@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Models\Admin;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -25,7 +26,7 @@ class AdminController extends Controller
         $blogsCount = Blog::count();
         $messagesCount = Messenger::count();
         $feedbacksCount = Feedback::count();
-        $users = Users::all();
+        $users = Users::all(); // Có thể thêm điều kiện lọc nếu cần
 
         return view('Admin.home', compact('usersCount', 'blogsCount', 'messagesCount', 'feedbacksCount', 'users'));
     }
