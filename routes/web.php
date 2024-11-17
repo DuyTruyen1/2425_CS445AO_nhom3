@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\NumberController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Users\UserController;
+
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Feedback;
@@ -50,3 +52,21 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('ajax_edit_skill/{id}', [SkillController::class, 'postEditSkill']);
     Route::get('/delete-skill/{id}', [SkillController::class, 'deleteSkill']);
 });
+
+//users
+Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
+    Route::get('Setting', [UserController::class, 'updatePassword'])->name('user.update.password');
+    Route::post('Setting', [UserController::class, 'saveUpdatePassword']);
+    Route::get('Help', [UserController::class, 'getHelp'])->name('get-help');
+    Route::post('Help', [UserController::class, 'postHelp']);
+});
+
+
+Route::get('login', [UserController::class, 'login'])->name('login');
+Route::post('login', [UserController::class, 'post_login']);
+Route::get('logout', [UserController::class, 'logout'])->name('logout');
+
+// Auth::routes(['verify' => true]);
+
+Route::get('registration', [UserController::class, 'registration'])->name('registration');
+Route::post('registration', [UserController::class, 'post_registration']);

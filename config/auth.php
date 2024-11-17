@@ -25,7 +25,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            // 'model' => App\Models\Users::class,  // Ensure this is the correct model for 'users'
+            'model' => App\Models\Users::class,  // Ensure this is the correct model for 'users'
         ],
         'admin' => [
             'driver' => 'eloquent',
