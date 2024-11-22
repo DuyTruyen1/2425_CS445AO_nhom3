@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\NumberController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Users\UserController;
+use App\Http\Controllers\Users\CompanyController;
+
 
 use App\Models\Blog;
 use App\Models\Category;
@@ -59,6 +61,29 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
     Route::post('Setting', [UserController::class, 'saveUpdatePassword']);
     Route::get('Help', [UserController::class, 'getHelp'])->name('get-help');
     Route::post('Help', [UserController::class, 'postHelp']);
+
+    Route::group(['prefix' => 'Company'], function () {
+        Route::get('Home', [CompanyController::class, 'getHome'])->name('company-home');
+        Route::get('Blog', [CompanyController::class, 'getBlog']);
+        Route::post('Blog', [CompanyController::class, 'postBlog']);
+        Route::post('updateBlog/{id_blog}', [CompanyController::class, 'updateBlog']);
+        Route::get('getUpdateBlog/{id_blog}', [CompanyController::class, 'getupdateBlog']);
+        Route::get('delBlog/{id_blog}', [CompanyController::class, 'delBlog']);
+
+        Route::get('DS1', [CompanyController::class, 'getDS1']);
+        Route::get('DS2', [CompanyController::class, 'getDS2']);
+
+        Route::get('Profile/{id}', [CompanyController::class, 'getProfile']);
+
+        Route::get('CV/{id}', [CompanyController::class, 'getCV']);
+        Route::get('Share/{id}', [CompanyController::class, 'getShare']);
+        Route::get('Share2/{id_blog}', [CompanyController::class, 'getShare2']);
+        Route::post('updateProfile/{id}', [CompanyController::class, 'postUpdate']);
+        Route::get('updateProfile', [CompanyController::class, 'postUpdate']);
+        Route::get('messenger-company/{id}', [CompanyController::class, 'messenger'])->name('messenger-company');
+        Route::post('send-mes', [CompanyController::class, 'send_messenger']);
+        Route::post('load-mes', [CompanyController::class, 'load_mes']);
+    });
 });
 
 

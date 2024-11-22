@@ -1,0 +1,148 @@
+/* Tổng quan */
+body {
+    font-family: "Arial", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+h2,
+h3,
+h4 {
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    background-color: #fff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+thead th {
+    background-color: #007bff;
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+}
+
+tbody td {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+}
+
+/* Về website */
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.about-cols .about-col {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.about-cols .about-col:hover {
+    transform: scale(1.05);
+}
+
+.about-col img {
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.about-col .icon {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #495057;
+    margin-bottom: 1rem;
+}
+
+/* Thống kê */
+.counter {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 1rem;
+}
+
+.counter .icon-wrap {
+    font-size: 2.5rem;
+    margin-right: 15px;
+    color: #007bff;
+}
+
+.counter-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.counter-text strong {
+    font-size: 2rem;
+    color: #007bff;
+}
+
+.counter-text span {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+/* Bố cục */
+.container {
+    padding: 2rem;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.col-md-4,
+.col-lg-6 {
+    flex: 1;
+    min-width: 300px;
+}
+
+.intro-section {
+    padding: 2rem 0;
+}
+
+/* Hiệu ứng AOS */
+[data-aos] {
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+[data-aos][data-aos-fade-up] {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+}

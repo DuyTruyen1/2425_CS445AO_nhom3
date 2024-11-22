@@ -1,0 +1,100 @@
+/* Tổng quan */
+body {
+    background-color: #f4f6f9;
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 3px solid #007bff;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Khung viền tổng quan */
+.border-custom {
+    border: 2px solid #007bff;
+    border-radius: 10px;
+}
+
+/* Header card */
+.card-header {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.border-bottom-custom {
+    border-bottom: 3px solid #ffc107 !important;
+}
+
+/* Avatar */
+.avatar-info-area {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 3px solid #ffc107;
+    background-color: #f8f9fa;
+    background-position: center;
+    background-size: cover;
+}
+
+/* Input và Textarea */
+.card-body label {
+    font-weight: bold;
+}
+
+.card-body input,
+.card-body textarea {
+    border-radius: 5px;
+    border: 2px solid #007bff;
+    transition: 0.3s ease;
+}
+
+.card-body input:hover,
+.card-body textarea:hover {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Form Checkbox */
+.form-check-input {
+    border-radius: 5px;
+}
+
+.form-check-label {
+    margin-left: 5px;
+}
+
+/* Nút bấm */
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Hiệu ứng Shadow */
+.card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+}

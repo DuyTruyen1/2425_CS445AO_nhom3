@@ -35,8 +35,8 @@ class UserController extends Controller
 
             $routes = [
                 '1' => 'company-home',
-                '2' => 'teacher-home',
-                '3' => 'student-home',
+                // '2' => 'teacher-home ',
+                // '3' => 'student-home',
             ];
 
             // Kiểm tra xem category có hợp lệ không, nếu hợp lệ sẽ chuyển hướng đến trang tương ứng
