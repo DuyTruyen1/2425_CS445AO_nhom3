@@ -38,19 +38,35 @@
 								<div class="border p-4 rounded">
 									<!-- Success and Danger Alerts -->
 									@if(Session::has('success'))
-										<div class="alert alert-success alert-dismissable">
-											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-											<strong>Thành công! </strong> {{Session::get('success')}}
-										</div>
-									@endif
+    						<script>
+										toastr.success("{{ Session::get('success') }}", "Thành công", {
+												closeButton: true,
+												progressBar: true,
+										});
+								</script>
+							@endif
 
-									@if(Session::has('danger'))
-										<div class="alert alert-danger alert-dismissable">
-											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-											<strong>Thất bại! </strong> {{\Session::get('danger')}}
+
+									@if(Session::has('error'))
+									<script>
+										toastr.error("{{ Session::get('error') }}", "Lỗi", {
+											closeButton: true,
+											progressBar: true,
+										});
+									</script>
+								@endif
+
+									<!-- Start error message display -->
+									@if ($errors->any())
+										<div class="alert alert-danger">
+											<ul>
+												@foreach ($errors->all() as $error)
+													<li>{{ $error }}</li>
+												@endforeach
+											</ul>
 										</div>
 									@endif
-									<!-- End Alerts -->
+									<!-- End error message display -->
 
 									<div class="text-center">
 										<h3 class="">Đăng Nhập</h3>
@@ -66,6 +82,9 @@
 											<div class="col-12">
 												<label class="form-label">Email</label>
 												<input name="email" type="email" class="form-control" placeholder="Nhập vào email" required>
+												@error('email')
+													<div class="text-danger mt-1">{{ $message }}</div>
+												@enderror
 											</div>
 											<div class="col-12">
 												<label class="form-label">Mật Khẩu</label>
@@ -73,6 +92,9 @@
 													<input name="password" type="password" class="form-control border-end-0" placeholder="Nhập vào mật khẩu" required> 
 													<a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
 												</div>
+												@error('password')
+													<div class="text-danger mt-1">{{ $message }}</div>
+												@enderror
 											</div>
 											<div class="col-md-6">
 											</div>
@@ -103,6 +125,12 @@
 	<script src="/assets_admin/plugins/simplebar/js/simplebar.min.js"></script>
 	<script src="/assets_admin/plugins/metismenu/js/metisMenu.min.js"></script>
 	<script src="/assets_admin/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+	<!-- Thêm CSS của Toastr -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+<!-- Thêm JS của Toastr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 	<!--Password show & hide js -->
 	<script>
 		$(document).ready(function () {

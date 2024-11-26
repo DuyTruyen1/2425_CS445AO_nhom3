@@ -11,6 +11,7 @@ use App\Models\company;
 use App\Models\Feedback;
 use App\Models\Category;
 use App\Http\Requests\RequestPassword;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RequestRegistration;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -23,31 +24,32 @@ class UserController extends Controller
     }
 
 
-    public function post_login(Request $request)
+    public function post_login(LoginRequest $request)  // Sử dụng LoginRequest để tự động xác thực
     {
-        // Đăng xuất người dùng trước khi đăng nhập mới
-        Auth::logout();
+        Auth::logout();  // Đăng xuất người dùng hiện tại
 
-        // Kiểm tra thông tin đăng nhập
+        // Kiểm tra thông tin đăng nhập, chỉ sử dụng email và password từ request
         if (Auth::attempt($request->only('email', 'password'))) {
-            // Kiểm tra category của người dùng sau khi đăng nhập thành công
+            // Lấy thông tin người dùng vừa đăng nhập
             $user = Auth::user();
 
+            // Định nghĩa các route điều hướng tùy thuộc vào category của người dùng
             $routes = [
                 '1' => 'company-home',
-                // '2' => 'teacher-home ',
-                // '3' => 'student-home',
+                // '2' => 'teacher-home', // Uncomment và cập nhật nếu cần thêm
+                '3' => 'student-home',
             ];
 
-            // Kiểm tra xem category có hợp lệ không, nếu hợp lệ sẽ chuyển hướng đến trang tương ứng
+            // Kiểm tra category của người dùng và điều hướng đến route tương ứng
             if (isset($routes[$user->category])) {
                 return redirect()->route($routes[$user->category])->with('success', 'Chào mừng quay trở lại');
             }
         }
 
-        // Nếu đăng nhập thất bại
-        return redirect()->back()->with('danger', "Đăng nhập thất bại");
+        // Nếu không thành công, trả về lỗi và thông báo sai email hoặc mật khẩu
+        return redirect()->back()->with('error', 'Email hoặc mật khẩu không chính xác!');
     }
+
 
 
     public function registration()

@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\NumberController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Users\CompanyController;
+use App\Http\Controllers\Users\StudentController;
+
 
 
 use App\Models\Blog;
@@ -61,6 +63,31 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
     Route::post('Setting', [UserController::class, 'saveUpdatePassword']);
     Route::get('Help', [UserController::class, 'getHelp'])->name('get-help');
     Route::post('Help', [UserController::class, 'postHelp']);
+
+
+    Route::group(['prefix' => 'Student'], function () {
+        Route::get('Home', [StudentController::class, 'getHome'])->name('student-home');
+
+        Route::get('Blog', [StudentController::class, 'getBlog']);
+        Route::post('Blog', [StudentController::class, 'postBlog']);
+        Route::post('updateBlog/{id_blog}', [StudentController::class, 'updateBlog']);
+        Route::get('getUpdateBlog/{id_blog}', [StudentController::class, 'getUpdateBlog']);
+        Route::get('delBlog/{id_blog}', [StudentController::class, 'delBlog']);
+
+        Route::get('DS1', [StudentController::class, 'getDS1']);
+        Route::get('DS2', [StudentController::class, 'getDS2']);
+
+        Route::get('Profile/{id}', [StudentController::class, 'getProfile']);
+
+        Route::get('CV/{id}', [StudentController::class, 'getCV']);
+        Route::get('Share/{id}', [StudentController::class, 'getShare']);
+        Route::get('Share2/{id_blog}', [StudentController::class, 'getShare2']);
+        Route::post('updateProfile/{id}', [StudentController::class, 'postUpdate']);
+        Route::get('messenger-student/{id}', [StudentController::class, 'messenger'])->name('messenger-student');
+        Route::post('send-mes', [StudentController::class, 'send_Messenger']);
+        Route::post('load-mes', [StudentController::class, 'load_Mes']);
+    });
+
 
     Route::group(['prefix' => 'Company'], function () {
         Route::get('Home', [CompanyController::class, 'getHome'])->name('company-home');

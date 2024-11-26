@@ -29,28 +29,33 @@ class CompanyController extends Controller
         $companys = users::where('category', 1)->count();
         $teachers = users::where('category', 2)->count();
         $students = users::where('category', 3)->count();
-        $blogs = blog::all()->count();
-        $category = category::all()[0];
+        $blogs = blog::count();
+        $category = category::first();
+
         $skill_all = Fk_Skill::select('skill.name', DB::raw('count(*) as total'))
             ->join('skill', 'skill.id', '=', 'fk_skill.skill_id')
             ->groupBy('skill.name')
             ->join('students', 'students.id', '=', 'fk_skill.student_id')
             ->get()
             ->toArray();
+
         $skill_all2 = Fk_Skill::select('skill.name', DB::raw('count(*) as total'))
             ->join('skill', 'skill.id', '=', 'fk_skill.skill_id')
             ->groupBy('skill.name')
             ->join('teacher', 'teacher.id', '=', 'fk_skill.teacher_id')
             ->get()
             ->toArray();
+
         $skill_all3 = Fk_Skill::select('skill.name', DB::raw('count(*) as total'))
             ->join('skill', 'skill.id', '=', 'fk_skill.skill_id')
             ->groupBy('skill.name')
             ->join('company', 'company.id', '=', 'fk_skill.company_id')
             ->get()
             ->toArray();
-        return view('Pages.Company.home', ['skill_all3' => $skill_all3, 'skill_all2' => $skill_all2, 'skill_all' => $skill_all, 'category' => $category, 'companys' => $companys, 'teachers' => $teachers, 'students' => $students, 'blogs' => $blogs]);
+
+        return view('Pages.Company.home', compact('skill_all3', 'skill_all2', 'skill_all', 'category', 'companys', 'teachers', 'students', 'blogs'));
     }
+
 
     public function getBlog()
     {
@@ -321,6 +326,7 @@ class CompanyController extends Controller
         $skill = skill::all();
         return view('Pages.Company.DS2', ['user' => $user, 'skill' => $skill, 'skill1' => $skill1, 'user1' => $user1, 'user2' => $user2, 'teacher' => $teacher, 'data' => $data, 'category' => $category]);
     }
+
 
 
     public function getProfile($id)
