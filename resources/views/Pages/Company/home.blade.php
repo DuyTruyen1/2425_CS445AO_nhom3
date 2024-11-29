@@ -1,7 +1,7 @@
 
 @extends('Pages.layout.menu')
 @section('content')
-<link rel="stylesheet" href="{{asset('asset/CSS/home_page.css')}}">
+{{-- <link rel="stylesheet" href="{{asset('asset/CSS/home_page.css')}}"> --}}
     <div class="intro-section" id="home">
       
         <div class="site-section section-1">
@@ -17,7 +17,7 @@
                   <div class="col-md-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                     <div class="about-col">
                       <div class="img">
-                        <img src="assetHome/img/sumenhnhatrung.png" alt="" class="img-fluid">
+                        <img src="assetHome/img/dtu5.png" alt="" class="img-fluid">
                         <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
                       </div>
                       <h3 class="title">Sứ mệnh nhà trường</h3>

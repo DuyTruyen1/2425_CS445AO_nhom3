@@ -8,10 +8,10 @@
 } */
 </style>
 <div class="container">
-    <a class="position-absolute" id="btnCV" href="./Pages/Student/CV/{{Auth::user()->id}}"><button type="reset2" class="btn btn-primary dark-mode" >CV Cá Nhân</button></a>
+    <a class="position-absolute" id="btnCV" href="./Pages/Student/CV/{{Auth::user()->id}}"><button type="reset2" class="btn btn-warning dark-mode" >CV Cá Nhân</button></a>
     <form class="" method="POST" action="./Pages/Student/updateProfile/{{Auth::user()->id}}" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-        <button type="submit" class="btn btn-primary dark-mode" >Ghi nhận</button>
+        <button type="submit" class="btn btn-warning dark-mode" >Ghi nhận</button>
 
         <div class="row dark-mode">
             <div class="col-md-6 dark-mode">
@@ -66,17 +66,15 @@
                         <div class="form-group">
                             <label for="department">Khoa</label>
                             <select value="{{$student->department}}" name="department" class="form-control dark-mode" id="sel1">
-                                <option <?php if($student->department=="Công nghệ thông tin"){echo "selected";}?> value="Công nghệ thông tin"  name="department">Công nghệ thông tin</option>
+                                <option <?php if($student->department=="Công nghệ thông tin"){echo "selected";}?> value="Công nghệ thông tin"  name="department">Công nghệ phần mềm</option>
                                 <option <?php if($student->department=="Máy tính và Robot"){echo "selected";}?> value="Máy tính và Robot"  name="department">Máy tính và Robot</option>
-                                <option <?php if($student->department=="Cơ kỹ thuật"){echo "selected";}?> value="Cơ kỹ thuật"  name="department">Cơ kỹ thuật</option>
+                                <option <?php if($student->department=="Cơ kỹ thuật"){echo "selected";}?> value="Cơ kỹ thuật"  name="department">kỹ thuật Ô Tô</option>
                                 <option <?php if($student->department=="Công nghệ kỹ thuật xây dựng"){echo "selected";}?> value="Công nghệ kỹ thuật xây dựng"  name="department">Công nghệ kỹ thuật xây dựng</option>
                                 <option <?php if($student->department=="Công nghệ Hàng không vũ trụ"){echo "selected";}?> value="Công nghệ Hàng không vũ trụ"  name="department">Công nghệ Hàng không vũ trụ</option>
                                 <option <?php if($student->department=="Kỹ thuật điều khiển và tự động hóa"){echo "selected";}?> value="Kỹ thuật điều khiển và tự động hóa"  name="department">Kỹ thuật điều khiển và tự động hóa</option>
                                 <option <?php if($student->department=="
                                     Công nghệ nông nghiệp"){echo "selected";}?> value="Công nghệ nông nghiệp"  name="department">Công nghệ nông nghiệp</option>
                                 <option  <?php if($student->department=="Điện tử viễn thông"){echo "selected";}?> value="Điện tử viễn thông" name="department">Điện tử viễn thông</option>
-                                <option  <?php if($student->department=="Vật lý kỹ thuật"){echo "selected";}?> value="Vật lý kỹ thuật" name="department">Vật lý kỹ thuật</option>
-
                             </select>
                         </div>
                         <label for="major">Ngành</label>
@@ -95,6 +93,8 @@
                                 <option <?php if($student->trainingSystem=="Chính quy"){echo "selected";}?> name="trainingSystem" value="Chính quy">Chính quy</option>
                                 <option <?php if($student->trainingSystem=="Tại chức"){echo "selected";}?> name="trainingSystem" value="Tại chức">Tại chức</option>
                                 <option <?php if($student->trainingSystem=="Tại chỗ"){echo "selected";}?> name="trainingSystem" value="Tại chỗ">Tại chỗ</option>
+                                <option <?php if($student->trainingSystem=="Du học"){echo "selected";}?> name="trainingSystem" value="Du học">Du học</option>
+
 
                             </select>
                         </div>
@@ -103,20 +103,24 @@
                             <select value="{{$student->trainingProgram}}" name="trainingProgram" class="form-control dark-mode" id="sel1">
                                 <option <?php if($student->trainingProgram=="Chuẩn"){echo "selected";}?> value="Chuẩn">Chuẩn</option>
                                 <option <?php if($student->trainingProgram=="CLC"){echo "selected";}?> value="CLC">CLC</option>
-                                <option <?php if($student->trainingProgram=="CLC (Thông tư 23)"){echo "selected";}?> value="CLC (Thông tư 23)">CLC (Thông tư 23)</option>
+                                <option <?php if($student->trainingProgram=="Troy"){echo "selected";}?> value="Troy">Troy</option>
+                                <option <?php if($student->trainingProgram=="CMU"){echo "selected";}?> value="Troy">CMU</option>
+                                <option <?php if($student->trainingProgram=="Việt Nhật (Liên kết du học)"){echo "selected";}?> value="Việt Nhật (Liên kết du học)">Việt Nhật (Liên kết du học)</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="year-of-course">Khoá</label>
                             <select value="{{$student->yearOfCourse}}" name="yearOfCourse" class="form-control dark-mode" id="sel1">
-                                <option <?php if($student->yearOfCourse=="QH-2014"){echo "selected";}?> name="yearOfCourse" value="QH-2014">QH-2014</option>
-                                <option <?php if($student->yearOfCourse=="QH-2015"){echo "selected";}?> name="yearOfCourse" value="QH-2015">QH-2015</option>
-                                <option <?php if($student->yearOfCourse=="QH-2016"){echo "selected";}?> name="yearOfCourse" value="QH-2016">QH-2016</option>
-                                <option <?php if($student->yearOfCourse=="QH-2017"){echo "selected";}?> name="yearOfCourse" value="QH-2017">QH-2017</option>
-                                <option <?php if($student->yearOfCourse=="QH-2018"){echo "selected";}?> name="yearOfCourse" value="QH-2018">QH-2018</option>
-                                <option <?php if($student->yearOfCourse=="QH-2019"){echo "selected";}?> name="yearOfCourse" value="QH-2019">QH-2019</option>
-                                <option <?php if($student->yearOfCourse=="QH-2020"){echo "selected";}?> name="yearOfCourse" value="QH-2020">QH-2020</option>
-                                <option <?php if($student->yearOfCourse=="QH-2021"){echo "selected";}?> name="yearOfCourse" value="QH-2021">QH-2021</option>
+                                <option <?php if($student->yearOfCourse=="QH-2014"){echo "selected";}?> name="yearOfCourse" value="QH-2014">K20</option>
+                                <option <?php if($student->yearOfCourse=="QH-2015"){echo "selected";}?> name="yearOfCourse" value="QH-2015">K21</option>
+                                <option <?php if($student->yearOfCourse=="QH-2016"){echo "selected";}?> name="yearOfCourse" value="QH-2016">K22</option>
+                                <option <?php if($student->yearOfCourse=="QH-2017"){echo "selected";}?> name="yearOfCourse" value="QH-2017">K23</option>
+                                <option <?php if($student->yearOfCourse=="QH-2018"){echo "selected";}?> name="yearOfCourse" value="QH-2018">K24</option>
+                                <option <?php if($student->yearOfCourse=="QH-2019"){echo "selected";}?> name="yearOfCourse" value="QH-2019">K25</option>
+                                <option <?php if($student->yearOfCourse=="QH-2020"){echo "selected";}?> name="yearOfCourse" value="QH-2020">K26</option>
+                                <option <?php if($student->yearOfCourse=="QH-2021"){echo "selected";}?> name="yearOfCourse" value="QH-2021">K27</option>
+                                <option <?php if($student->yearOfCourse=="QH-2022"){echo "selected";}?> name="yearOfCourse" value="QH-2022">K28</option>
+
                             </select>
                         </div>
 

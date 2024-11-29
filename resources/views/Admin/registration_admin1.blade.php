@@ -99,16 +99,10 @@
                                                 @enderror
                                             </div>
 
-                                            <!-- Loại tài khoản -->
                                             <div class="col-12">
-                                                <label for="Category" class="form-label">Loại tài khoản</label>
-                                                <select class="form-control @error('category') input-error @enderror" name="category" id="txtCategory">
-                                                    <option value="" disabled selected>Chọn loại tài khoản</option>
-                                                    <option value="3" {{ old('category') == '3' ? 'selected' : '' }}>Sinh viên</option>
-                                                    <option value="2" {{ old('category') == '2' ? 'selected' : '' }}>Nhà trường</option>
-                                                    <option value="1" {{ old('category') == '1' ? 'selected' : '' }}>Công ty</option>
-                                                </select>
-                                                @error('category')
+                                                <label class="form-label">Address</label>
+                                                <input name="address" type="text" class="form-control" placeholder="Nhập vào địa chỉ">
+                                                @error('address')
                                                 <span class="error-text">{{ $message }}</span>
                                                 @enderror
                                             </div>

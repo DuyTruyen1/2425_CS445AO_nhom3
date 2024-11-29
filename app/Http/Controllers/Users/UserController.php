@@ -46,7 +46,6 @@ class UserController extends Controller
             }
         }
 
-        // Nếu không thành công, trả về lỗi và thông báo sai email hoặc mật khẩu
         return redirect()->back()->with('error', 'Email hoặc mật khẩu không chính xác!');
     }
 

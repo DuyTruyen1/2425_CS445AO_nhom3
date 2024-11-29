@@ -36,7 +36,7 @@
             <textarea name="Noidung" id="Nodung" cols="30" rows="4" class="ckeditor form-control dark-mode"></textarea>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary dark-mode">Đăng bài</button>
+            <button type="submit" class="btn btn-warning dark-mode">Đăng bài</button>
         </div>
     </form>
 
@@ -59,7 +59,7 @@
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="2" style="width: 2em !important;">Xóa</th>
                     </tr>
                 </thead>
-                <tfoot>
+                {{-- <tfoot>
                     <tr>
                         <th rowspan="1" colspan="2">ID blog</th>
                         <th rowspan="1" colspan="2">ID tus</th>
@@ -69,7 +69,7 @@
                         <th rowspan="1" colspan="2">Sửa</th>
                         <th rowspan="1" colspan="2">Xóa</th>
                     </tr>
-                </tfoot>
+                </tfoot> --}}
                 <tbody>
                     @foreach($BL_cpn as $blg)
                         <tr role="row" class="even">

@@ -4,11 +4,11 @@
 
 <link rel="stylesheet" href="{{asset('asset/CSS/profile.css')}}">
 <div class="container">
-    <a class="position-absolute" id="btnCV" href="./Pages/Company/CV/{{Auth::user()->id}}"><button type="reset2" class="btn btn-primary dark-mode" >CV Cá Nhân</button></a>
+    <a class="position-absolute" id="btnCV" href="./Pages/Company/CV/{{Auth::user()->id}}"><button type="reset2" class="btn btn-warning dark-mode" >CV Cá Nhân</button></a>
     <form class="" method="POST" action="./Pages/Company/updateProfile/{{Auth::user()->id}}" enctype="multipart/form-data">
     
     <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-    <button type="submit" class="btn btn-primary dark-mode" >Ghi nhận</button>
+    <button type="submit" class="btn btn-warning dark-mode" >Ghi nhận</button>
     
     <div class="row dark-mode">
         <div class="col-md-6 dark-mode">

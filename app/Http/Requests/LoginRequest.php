@@ -18,7 +18,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'required|min:8|regex:/[A-Z]/|regex:/[@$!%*?&]/', // Cập nhật quy tắc password
+            'password' => 'required', // Loại bỏ yêu cầu về độ dài và ký tự đặc biệt
         ];
     }
 
@@ -32,9 +32,8 @@ class LoginRequest extends FormRequest
         return [
             'email.required' => 'Email không được để trống.',
             'email.email' => 'Email không hợp lệ.',
-            'password.required' => 'Mật khẩu không được để trống.',
-            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
-            'password.regex' => 'Mật khẩu phải chứa ít nhất một ký tự in hoa và một ký tự đặc biệt.',
+            'email.exists' => 'Email không tồn tại trong hệ thống.',
+            'password.required' => 'Mật khẩu không được để trống.', // Chỉ thông báo khi mật khẩu trống
         ];
     }
 }

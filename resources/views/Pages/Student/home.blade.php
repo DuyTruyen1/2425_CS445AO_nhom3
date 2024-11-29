@@ -1,4 +1,3 @@
-
 @extends('Pages.layout.menu')
 @section('content')
     
@@ -17,7 +16,7 @@
                   <div class="col-md-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                     <div class="about-col">
                       <div class="img">
-                        <img src="assetHome/img/sumenhnhatrung.png" alt="" class="img-fluid">
+                        <img src="assetHome/img/dtu5.png" alt="" class="img-fluid">
                         <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
                       </div>
                       <h3 class="title">Sứ mệnh nhà trường</h3>
@@ -30,12 +29,12 @@
                   <div class="col-md-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
                     <div class="about-col">
                       <div class="img">
-                        <img src="assetHome/img/sumenhcongty.webp" alt="" class="img-fluid">
+                        <img src="assetHome/img/job.png" alt="" class="img-fluid">
                         <div class="icon"><i class="ion-ios-list-outline"></i></div>
                       </div>
                       <h3 class="title">Sứ mệnh công ty</h3>
                       <p>
-                        Nhiệm vụ của chúng tôi là lớn mạnh và phát triển đưa Việt Nam sánh ngang với các cường quốc năm châu, và đất nước có lớn mạnh được hay không là nhờ vào tài năng và nỗ lực của các bạn. Vì vậy, hãy đến với chúng tôi để có thế xây dựng tương lai tươi đẹp, xây dựng một Việt Nam sáng tươi lớn mạnh về công nghệ.
+                        Nhiệm vụ của chúng tôi là lớn mạnh và phát triển đưa Việt Nam sánh ngang với các cường quốc năm châu, và đất nước có lớn mạnh được hay không là nhờ vào tài năng và nỗ lực của các bạn. Vì vậy, hãy đến với chúng tôi để có thể xây dựng tương lai tươi đẹp, xây dựng một Việt Nam sáng tươi lớn mạnh về công nghệ.
                       </p>
                     </div>
                   </div>
@@ -56,7 +55,6 @@
                 </div>
         
               </div>
-            
             
         </div>
     </div>
@@ -104,74 +102,64 @@
                     </div>
                 </div>
                 <h4>Số lượng sinh viên theo kỹ năng: </h4>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Kỹ năng</th>
-            <th>Số lượng</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($skill_all as $item)
-        <tr>
-            <td>{{$item['name']}}</td>
-            <td>{{$item['total']}}</td>
-            
-        </tr>
-        @endforeach
-        
-        
-    
-    </tbody>
-</table>
-    <h4>Số lượng thầy cô tuyển theo kỹ năng: </h4>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Kỹ năng</th>
-            <th>Số lượng</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($skill_all2 as $item)
-        <tr>
-            <td>{{$item['name']}}</td>
-            <td>{{$item['total']}}</td>
-            
-        </tr>
-        @endforeach
-        
-        
-    
-    </tbody>
-</table>
-<h4>Số lượng thầy công ty tuyển theo kỹ năng: </h4>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Kỹ năng</th>
-            <th>Số lượng</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($skill_all3 as $item)
-        <tr>
-            <td>{{$item['name']}}</td>
-            <td>{{$item['total']}}</td>
-            
-        </tr>
-        @endforeach
-        
-        
-    
-    </tbody>
-</table>
-
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Kỹ năng</th>
+                                <th>Số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($skill_all as $item)
+                            <tr>
+                                <td>{{$item['name']}}</td>
+                                <td>{{$item['total']}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <h4>Số lượng thầy cô tuyển theo kỹ năng: </h4>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Kỹ năng</th>
+                                <th>Số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($skill_all2 as $item)
+                            <tr>
+                                <td>{{$item['name']}}</td>
+                                <td>{{$item['total']}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <h4>Số lượng công ty tuyển theo kỹ năng: </h4>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Kỹ năng</th>
+                                <th>Số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($skill_all3 as $item)
+                            <tr>
+                                <td>{{$item['name']}}</td>
+                                <td>{{$item['total']}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 
             </div>
         </div>
-    </div>
+    </div>  
 @stop

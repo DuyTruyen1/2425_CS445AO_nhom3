@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\AdminRegistrationRequest;
+use App\Http\Requests\AdminLoginRequest;
 use App\Models\Admin;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -35,7 +37,7 @@ class AdminController extends Controller
         return view('Admin.Login_admin');
     }
 
-    public function postLoginAdmin(Request $request)
+    public function postLoginAdmin(AdminLoginRequest $request)
     {
         if (Auth::guard('adm')->attempt($request->only('email', 'password'))) {
             return redirect()->route('admin-home')->with('success', 'Chào mừng quay lại!');
@@ -46,10 +48,10 @@ class AdminController extends Controller
 
     public function registrationAdmin()
     {
-        return view('Admin.registration_admin');
+        return view('Admin.registration_admin1');
     }
 
-    public function postRegistrationAdmin(Request $request)
+    public function postRegistrationAdmin(AdminRegistrationRequest $request)
     {
         $request->merge(['password' => bcrypt($request->password)]);
         $admin = Admin::create($request->all());

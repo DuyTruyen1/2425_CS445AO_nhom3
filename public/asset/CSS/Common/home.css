@@ -1,0 +1,142 @@
+/* Cải tiến phần tiêu đề của từng phần */
+.section-header h2 {
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* Cải tiến phần mô tả dưới tiêu đề */
+.section-header p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* Tạo không gian cho các phần giới thiệu */
+.about-cols {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Đảm bảo các phần của giới thiệu có chiều cao đều nhau và đẹp */
+.about-col {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.about-col .img {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.about-col .img img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.about-col .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.about-col .title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+    color: #333;
+}
+
+.about-col p {
+    font-size: 14px;
+    color: #777;
+    margin-top: 10px;
+}
+
+/* Thêm khoảng cách cho phần thống kê */
+#statistical h2 {
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.counter {
+    display: flex;
+    align-items: start;
+    margin-bottom: 30px;
+}
+
+.counter .icon-wrap {
+    background-color: #1e5eae;
+    padding: 10px;
+    border-radius: 50%;
+    margin-right: 15px;
+    color: white;
+    font-size: 24px;
+}
+
+.counter .counter-text strong {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.counter .counter-text span {
+    font-size: 14px;
+    color: #777;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+/* Cải tiến table */
+.table-hover {
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+.table-hover th,
+.table-hover td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-hover th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    color: #333;
+}
+
+.table-hover tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Cải tiến phần footer (nếu có) */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
+}

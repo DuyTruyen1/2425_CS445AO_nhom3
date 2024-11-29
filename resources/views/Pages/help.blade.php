@@ -31,7 +31,7 @@
             <div class="form-group row">
             <div class="col-md-6">
                 
-                <button type="submit" class="btn btn-primary dark-mode"><i class="white fa fa-save"></i>  Liên hệ</button>
+                <button type="submit" class="btn btn-warning dark-mode"><i class="white fa fa-save"></i>  Liên hệ</button>
             </div>
         </div>
 

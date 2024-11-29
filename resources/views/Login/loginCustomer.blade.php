@@ -20,7 +20,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 	<link href="/assets_admin/css/app.css" rel="stylesheet">
 	<link href="/assets_admin/css/icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body class="bg-login">
@@ -36,77 +36,63 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="border p-4 rounded">
-									<!-- Success and Danger Alerts -->
-									@if(Session::has('success'))
-    						<script>
-										toastr.success("{{ Session::get('success') }}", "Thành công", {
-												closeButton: true,
-												progressBar: true,
-										});
-								</script>
-							@endif
-
-
-									@if(Session::has('error'))
-									<script>
-										toastr.error("{{ Session::get('error') }}", "Lỗi", {
-											closeButton: true,
-											progressBar: true,
-										});
-									</script>
-								@endif
-
-									<!-- Start error message display -->
-									@if ($errors->any())
-										<div class="alert alert-danger">
-											<ul>
-												@foreach ($errors->all() as $error)
-													<li>{{ $error }}</li>
-												@endforeach
-											</ul>
+						<!-- Hiển thị thông báo lỗi và thành công -->
+										@if(Session::has('success'))
+										<div class="alert alert-success">
+												{{ Session::get('success') }}
 										</div>
-									@endif
-									<!-- End error message display -->
-
+										@endif
 									<div class="text-center">
 										<h3 class="">Đăng Nhập</h3>
 										<p>Bạn chưa có tài khoản? <a href="./registration">Đăng Ký Tại Đây</a></p>
 									</div>
-									<div class="login-separater text-center mb-4"> 
+									<div class="login-separater text-center mb-4">
 										<span>OR SIGN IN WITH EMAIL</span>
 										<hr/>
 									</div>
 									<div class="form-body">
-										<form method="POST" class="row g-3">
-											@csrf
-											<div class="col-12">
-												<label class="form-label">Email</label>
-												<input name="email" type="email" class="form-control" placeholder="Nhập vào email" required>
-												@error('email')
-													<div class="text-danger mt-1">{{ $message }}</div>
-												@enderror
-											</div>
-											<div class="col-12">
-												<label class="form-label">Mật Khẩu</label>
-												<div class="input-group" id="show_hide_password">
-													<input name="password" type="password" class="form-control border-end-0" placeholder="Nhập vào mật khẩu" required> 
-													<a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+										<!-- Form Đăng Nhập -->
+											<form method="POST" class="row g-3">
+												@csrf
+												<div class="col-12">
+														<label class="form-label">Email</label>
+														<input name="email" type="email" class="form-control" placeholder="Nhập vào email" >
 												</div>
-												@error('password')
-													<div class="text-danger mt-1">{{ $message }}</div>
-												@enderror
-											</div>
-											<div class="col-md-6">
-											</div>
-											<div class="col-md-6 text-end">	
-												<a href="/authen_admintication-forgot-password.html">Quên Mật Khẩu?</a>
-											</div>
-											<div class="col-12">
-												<div class="d-grid">
-													<button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Đăng Nhập</button>
+												<div class="col-12">
+														<label class="form-label">Mật Khẩu</label>
+														<div class="input-group" id="show_hide_password">
+																<input name="password" type="password" class="form-control border-end-0" placeholder="Nhập vào mật khẩu" > 
+																<a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+														</div>
 												</div>
-											</div>
-										</form>
+												@if(Session::has('error'))
+												<div class="alert alert-danger alert-dismissible fade show" role="alert">
+														<strong>Lỗi!</strong> {{ Session::get('error') }}
+														<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+												</div>
+										@endif
+
+										<!-- Lỗi từ form validation -->
+										@if ($errors->any())
+												<div class="alert alert-danger alert-dismissible fade show" role="alert">
+														<strong>Lỗi!</strong>
+														<ul class="mb-0">
+																@foreach ($errors->all() as $error)
+																		<li>{{ $error }}</li>
+																@endforeach
+														</ul>
+														<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+												</div>
+										@endif
+												<div class="col-md-6"></div>
+												<div class="col-md-6 text-end">    
+												</div>
+												<div class="col-12">
+														<div class="d-grid">
+																<button type="submit" class="btn btn-warning"><i class="bx bxs-lock-open"></i>Đăng Nhập</button>
+														</div>
+												</div>
+											</form>
 									</div>
 								</div>
 							</div>
@@ -126,10 +112,10 @@
 	<script src="/assets_admin/plugins/metismenu/js/metisMenu.min.js"></script>
 	<script src="/assets_admin/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 	<!-- Thêm CSS của Toastr -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 
-<!-- Thêm JS của Toastr -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<!-- Thêm JS của Toastr -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 	<!--Password show & hide js -->
 	<script>
