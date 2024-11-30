@@ -12,6 +12,9 @@ use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Users\CompanyController;
 use App\Http\Controllers\Users\StudentController;
+use App\Http\Controllers\JitsiController;
+use App\Http\Controllers\Users\AppointmentStudentController;
+use App\Http\Controllers\Users\AppointmentCompanyController;
 
 
 
@@ -23,6 +26,7 @@ use App\Models\Skill;
 Route::get('/', function () {
     return view('index');
 });
+
 
 
 Route::get('admin-login', [AdminController::class, 'loginAdmin'])->name('login-admin');
@@ -86,6 +90,26 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
         Route::get('messenger-student/{id}', [StudentController::class, 'messenger'])->name('messenger-student');
         Route::post('send-mes', [StudentController::class, 'send_Messenger']);
         Route::post('load-mes', [StudentController::class, 'load_Mes']);
+
+        Route::get('/jitsi-meet', [JitsiController::class, 'index']);
+        // Hiển thị danh sách cuộc hẹn
+        Route::get('appointments', [AppointmentStudentController::class, 'index'])->name('appointments.index');
+
+        // Hiển thị form tạo cuộc hẹn
+        Route::get('appointments/create', [AppointmentStudentController::class, 'create'])->name('appointments.create');
+
+        // Lưu cuộc hẹn vào cơ sở dữ liệu
+        Route::post('appointments', [AppointmentStudentController::class, 'store'])->name('appointments.store');
+
+        // Hiển thị chi tiết một cuộc hẹn
+        Route::get('appointments/{appointment}', [AppointmentStudentController::class, 'show'])->name('appointments.show');
+
+        Route::get('appointments/{appointment}/edit', [AppointmentStudentController::class, 'edit'])->name('appointments.edit');
+
+        Route::put('appointments/{appointment}', [AppointmentStudentController::class, 'update'])->name('appointments.update');
+
+        // Xóa cuộc hẹn
+        Route::delete('appointments/{appointment}', [AppointmentStudentController::class, 'destroy'])->name('appointments.destroy');
     });
 
 
@@ -110,6 +134,26 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
         Route::get('messenger-company/{id}', [CompanyController::class, 'messenger'])->name('messenger-company');
         Route::post('send-mes', [CompanyController::class, 'send_messenger']);
         Route::post('load-mes', [CompanyController::class, 'load_mes']);
+
+        Route::get('/jitsi-meet', [JitsiController::class, 'index']);
+        // Hiển thị danh sách cuộc hẹn
+        Route::get('appointments', [AppointmentCompanyController::class, 'index'])->name('appointments.index');
+
+        // Hiển thị form tạo cuộc hẹn
+        Route::get('appointments/create', [AppointmentCompanyController::class, 'create'])->name('appointments.create');
+
+        // Lưu cuộc hẹn vào cơ sở dữ liệu
+        Route::post('appointments', [AppointmentCompanyController::class, 'store'])->name('appointments.store');
+
+        // Hiển thị chi tiết một cuộc hẹn
+        Route::get('appointments/{appointment}', [AppointmentCompanyController::class, 'show'])->name('appointments.show');
+
+        Route::get('appointments/{appointment}/edit', [AppointmentCompanyController::class, 'edit'])->name('appointments.edit');
+
+        Route::put('appointments/{appointment}', [AppointmentCompanyController::class, 'update'])->name('appointments.update');
+
+        // Xóa cuộc hẹn
+        Route::delete('appointments/{appointment}', [AppointmentCompanyController::class, 'destroy'])->name('appointments.destroy');
     });
 });
 

@@ -11,6 +11,9 @@ use App\Models\ThreadMessenger;
 use App\Models\Category;
 use App\Models\Blog;
 use App\Models\FK_Skill;
+use App\Models\Appointment;
+use App\Models\Teacher;
+use App\Models\Company;
 use App\Models\Skill;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +50,7 @@ class StudentController extends Controller
 
         return view('Pages.Student.home', compact('skill_all3', 'skill_all2', 'skill_all', 'category', 'companys', 'teachers', 'students', 'blogs'));
     }
+
 
     public function getBlog()
     {

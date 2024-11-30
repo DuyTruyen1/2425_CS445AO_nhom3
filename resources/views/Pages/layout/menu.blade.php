@@ -36,6 +36,16 @@
                 <div class="menu-item-icon icon-teacher"></div>
                 <div class="menu-item-text">Nhà Trường</div>
             </a>
+            <a class="menu-item" href="./Pages/Student/jitsi-meet">
+                <div class="menu-item-icon icon-teacher"></div>
+                <div class="menu-item-text">Tạo Cuộc Họp
+                </div>
+            </a>
+            <a class="menu-item" href="./Pages/Student/appointments">
+                <div class="menu-item-icon icon-board"></div>
+                <div class="menu-item-text">Tạo Lịch Hẹn
+                </div>
+            </a>
         <?php } elseif(Auth::user()->category == '1'){ ?>
         <div class="dark-mode logo-area">
             <a id="logo" href="./Pages/Company/Home">
@@ -68,6 +78,16 @@
             <a class="menu-item" href="./Pages/Company/DS2">
                 <div class="menu-item-icon icon-teacher"></div>
                 <div class="menu-item-text">Nhà Trường</div>
+            </a>
+            <a class="menu-item" href="./Pages/Company/jitsi-meet">
+                <div class="menu-item-icon icon-teacher"></div>
+                <div class="menu-item-text">Tạo Cuộc Họp
+                </div>
+            </a>
+            <a class="menu-item" href="./Pages/Company/appointments">
+                <div class="menu-item-icon icon-board"></div>
+                <div class="menu-item-text">Tạo Lịch Hẹn
+                </div>
             </a>
         <?php } elseif(Auth::user()->category == '2'){ ?>
         <div class="dark-mode logo-area">
@@ -102,6 +122,7 @@
             <div class="icon-more icon-company"></div>
             <div class="menu-item-text">Sinh Viên</div>
             </a>
+
             <?php }?>
             
             <a class="menu-item" href="./Pages/Setting">

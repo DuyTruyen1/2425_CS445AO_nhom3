@@ -64,7 +64,7 @@
 
         <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: url(assetHome/img/intro-carousel/1.jpg)">
+          <div class="carousel-item active" style="background-image: url(assetHome/img/intro-carousel/1 .jpg)">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Đại học Duy Tân</h2>
@@ -80,10 +80,10 @@
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: url(assetHome/img/intro-carousel/2.jpg)">
+          <div class="carousel-item" style="background-image: url(assetHome/img/intro-carousel/fpt.jpg)">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Tuyển dụng MISA - Software</h2>
+                <h2 class="animate__animated animate__fadeInDown">FPT Software Academy</h2>
                 <p class="animate__animated animate__fadeInUp">Mô hình đào tạo 3 chiều: ngoài đội ngũ giảng viên (Trainer) FPT Software Acadmey còn có các trợ giảng (Mentor) và quản
                 lý lớp (Admin) giúp tăng tương tác, hỗ trợ học viên tốt nhất.</p>
                 <a href="./registration" class="btn-get-started scrollto animate__animated animate__fadeInUp">Đăng ký</a>
@@ -111,7 +111,7 @@
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: url(assetHome/img/intro-carousel/4.jpg)">
+          <div class="carousel-item" style="background-image: url(assetHome/img/intro-carousel/funtap.jpg)">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Funtap</h2>
@@ -135,7 +135,7 @@
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: url(assetHome/img/intro-carousel/6.jpg)">
+          <div class="carousel-item" style="background-image: url(assetHome/img/intro-carousel/ncc.webp)">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">NCC - Company</h2>
@@ -173,13 +173,13 @@
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="about-col">
               <div class="img">
-                <img src="assetHome/img/sumenhnhatrung.png" alt="" class="img-fluid">
+                <img src="assetHome/img/dtu5.png" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
               </div>
               <h2 class="title"><a href="#">Sứ mệnh nhà trường</a></h2>
               <p>
-                Tạo ra nơi để sinh viên có thể dễ dàng tiếp cận được công việc mong muốn ngay từ khi còn trên ghế nhà trường.
-              </p>
+                Tạo ra một nền tảng kết nối sinh viên với nhà tuyển dụng, giúp sinh viên dễ dàng tiếp cận với các cơ hội việc làm phù hợp với năng lực và sở thích ngay từ khi còn trên ghế nhà trường.
+                 Nền tảng này không chỉ cung cấp thông tin việc làm mà còn hỗ trợ sinh viên phát triển kỹ năng thông qua các khóa học, hội thảo, và chương trình thực tập, giúp họ chuẩn bị tốt hơn cho thị trường lao động cạnh tranh.              </p>
             </div>
           </div>
 
