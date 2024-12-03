@@ -12,4 +12,9 @@ class Company extends Model
     {
         return $this->hasMany('App\student', 'CompanyID', 'StudentID');
     }
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }

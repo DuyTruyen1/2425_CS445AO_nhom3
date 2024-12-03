@@ -36,6 +36,10 @@
                 <div class="menu-item-icon icon-teacher"></div>
                 <div class="menu-item-text">Nhà Trường</div>
             </a>
+            <a class="menu-item" href="./Pages/Student/jobs">
+                <div class="menu-item-icon icon-company"></div>
+                <div class="menu-item-text">List Job</div>
+            </a>
         <?php } elseif(Auth::user()->category == '1'){ ?>
         <div class="dark-mode logo-area">
             <a id="logo" href="./Pages/Company/Home">
@@ -68,6 +72,10 @@
             <a class="menu-item" href="./Pages/Company/DS2">
                 <div class="menu-item-icon icon-teacher"></div>
                 <div class="menu-item-text">Nhà Trường</div>
+            </a>
+            <a class="menu-item" href="./Pages/Company/jobs">
+                <div class="menu-item-icon icon-teacher"></div>
+                <div class="menu-item-text">Tạo Jobs</div>
             </a>
             </a>
         <?php } elseif(Auth::user()->category == '2'){ ?>

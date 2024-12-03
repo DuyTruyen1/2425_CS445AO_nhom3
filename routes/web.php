@@ -16,13 +16,15 @@ use App\Http\Controllers\Users\StudentController;
 use App\Http\Controllers\Users\TeacherController;
 use App\Http\Controllers\JitsiController;
 use App\Http\Controllers\Users\ShowMeetingController;
-
+use App\Http\Controllers\Users\JobController;
+use App\Http\Controllers\Users\InterviewController;
 
 
 
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Feedback;
+use App\Models\Interview;
 use App\Models\Skill;
 
 Route::get('/', function () {
@@ -116,7 +118,14 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
         Route::get('messenger-student/{id}', [StudentController::class, 'messenger'])->name('messenger-student');
         Route::post('send-mes', [StudentController::class, 'send_Messenger']);
         Route::post('load-mes', [StudentController::class, 'load_Mes']);
+
+        // Danh sách công việc có thể ứng tuyển
+        Route::get('jobs', [InterviewController::class, 'index'])->name('student.jobs.index');
+
+        // Ứng tuyển vào công việc
+        Route::post('jobs/{jobId}/apply', [InterviewController::class, 'apply'])->name('student.jobs.apply');
     });
+
 
     Route::group(['prefix' => 'Teacher'], function () {
         Route::get('Home', [TeacherController::class, 'getHome'])->name('teacher-home');
@@ -163,6 +172,23 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
         Route::get('messenger-company/{id}', [CompanyController::class, 'messenger'])->name('messenger-company');
         Route::post('send-mes', [CompanyController::class, 'send_messenger']);
         Route::post('load-mes', [CompanyController::class, 'load_mes']);
+
+        Route::get('jobs', [JobController::class, 'index'])->name('company.jobs.index');
+        Route::get('jobs/create', [JobController::class, 'create'])->name('jobs.create');
+        Route::post('jobs', [JobController::class, 'store'])->name('jobs.store');
+        Route::get('jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+        Route::get('jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+        Route::put('jobs/{job}', [JobController::class, 'update'])->name('jobs.update');
+        Route::delete('jobs/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
+
+        Route::get('jobs/{jobId}/applicants', [JobController::class, 'showApplicants'])->name('jobs.applicants');
+
+        // Chấp nhận ứng viên
+        Route::post('interviews/{interviewId}/accept', [JobController::class, 'acceptApplicant'])->name('interviews.accept');
+
+        // // Phỏng vấn
+        // Route::get('jobs/{jobId}/students/{studentId}/interview', [InterviewController::class, 'scheduleInterview'])->name('interviews.schedule');
+        // Route::post('interviews', [InterviewController::class, 'storeInterview'])->name('interviews.store');
     });
 });
 
