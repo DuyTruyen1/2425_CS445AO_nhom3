@@ -16,6 +16,7 @@ use App\Models\Skill;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostBlogRequest;
+use App\Http\Requests\CompanyUpdateRequest;
 use Illuminate\Support\Str;
 
 
@@ -355,7 +356,7 @@ class CompanyController extends Controller
         return view('Pages.Company.Setting', ['category' => $category]);
     }
 
-    public function postUpdate(Request $request, $id)
+    public function postUpdate(CompanyUpdateRequest $request, $id)
     {
         // Mảng để lưu các tên kỹ năng đã được chọn
         $kcheck = [];
@@ -443,9 +444,13 @@ class CompanyController extends Controller
                 array_push($kcheck, $k['name']);
             }
 
-            // Trả về view với thông tin công ty mới, danh mục, kỹ năng và các kỹ năng đã chọn
-            return view('Pages.Company.Profile', ['company' => $company2, 'category' => $category, 'skill' => $skill, 'skillcheck' => $kcheck])
-                ->with('success', "Cập nhật thông tin thành công!");
+            return redirect()->route('company.profile', ['id' => $company2->id])
+                ->with([
+                    'category' => $category,
+                    'skill' => $skill,
+                    'skillcheck' => $kcheck,
+                    'success' => 'Bạn cập nhật thành công!'
+                ]);
         } else {
             // Nếu công ty đã tồn tại, cập nhật thông tin công ty
             $company->address = $request->address;
@@ -514,9 +519,13 @@ class CompanyController extends Controller
                 array_push($kcheck, $k['name']);
             }
 
-            // Trả về view với thông tin công ty đã cập nhật, danh mục, kỹ năng và các kỹ năng đã chọn
-            return view('Pages.Company.Profile', ['company' => $company, 'category' => $category, 'skill' => $skill, 'skillcheck' => $kcheck])
-                ->with('success', "Cập nhật thông tin thành công!");
+            return redirect()->route('company.profile', ['id' => $company->id])
+                ->with([
+                    'category' => $category,
+                    'skill' => $skill,
+                    'skillcheck' => $kcheck,
+                    'success' => 'Bạn cập nhật thành công!'
+                ]);
         }
     }
 

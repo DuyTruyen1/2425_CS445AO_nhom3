@@ -21,9 +21,10 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->password}}</td>
                     <td>
-                        <form method="GET" action="./deleteUser/{{$user->id}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.userAcc.delete', $user->id) }}" enctype="multipart/form-data">
                             @csrf
-                            <button type="submit" class="btn btn-danger">Xóa</button>
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này không?')">Xóa</button>
                         </form>
                     </td>
                 </tr>

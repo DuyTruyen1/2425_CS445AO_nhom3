@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\student;
+use App\Models\Student;
 use App\Models\Category;
 use App\Models\Appointment;
 use App\Models\Teacher;
@@ -12,17 +12,17 @@ use App\Models\Company;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
 
-class AppointmentStudentController extends Controller
+class AppointmentAdminController extends Controller
 {
     // Hiển thị form tạo cuộc hẹn
     public function create()
     {
-        $category = category::first();
+        $category = Category::first();
         $teachers = Teacher::all();  // Lấy tất cả giáo viên
         $companies = Company::all();  // Lấy tất cả công ty
         $students = Student::all();   // Lấy tất cả sinh viên
 
-        return view('appointments.create', compact('teachers', 'companies', 'students', 'category'));
+        return view('admin.appointments.create', compact('teachers', 'companies', 'students', 'category'));
     }
 
     public function store(StoreAppointmentRequest $request)
@@ -43,16 +43,16 @@ class AppointmentStudentController extends Controller
         ]);
 
         // Chuyển hướng hoặc trả về thông báo
-        return redirect()->route('appointments.index')->with('success', 'Appointment created successfully!');
+        return redirect()->route('admin.appointments.index')->with('success', 'Appointment created successfully!');
     }
 
     // Hiển thị tất cả các cuộc hẹn
     public function index()
     {
-        $category = category::first();
+        $category = Category::first();
         $appointments = Appointment::with(['teacher', 'company', 'student'])->get();
 
-        return view('appointments.index', compact('appointments', 'category'));
+        return view('admin.appointments.index', compact('appointments', 'category'));
     }
 
     public function destroy($id)
@@ -62,25 +62,25 @@ class AppointmentStudentController extends Controller
 
         // Kiểm tra nếu không tìm thấy cuộc hẹn
         if (!$appointment) {
-            return redirect()->route('appointments.index')->with('error', 'Appointment not found.');
+            return redirect()->route('admin.appointments.index')->with('error', 'Appointment not found.');
         }
 
         // Xóa cuộc hẹn
         $appointment->delete();
 
         // Chuyển hướng hoặc trả về thông báo
-        return redirect()->route('appointments.index')->with('success', 'Appointment deleted successfully!');
+        return redirect()->route('admin.appointments.index')->with('success', 'Appointment deleted successfully!');
     }
 
     public function edit($id)
     {
-        $category = category::first();
+        $category = Category::first();
         $appointment = Appointment::findOrFail($id);
         $teachers = Teacher::all();  // Lấy danh sách giáo viên
         $companies = Company::all();  // Lấy danh sách công ty
         $students = Student::all();   // Lấy danh sách sinh viên
 
-        return view('appointments.edit', compact('appointment', 'teachers', 'companies', 'students', 'category'));
+        return view('admin.appointments.edit', compact('appointment', 'teachers', 'companies', 'students', 'category'));
     }
 
     public function update(UpdateAppointmentRequest $request, $id)
@@ -102,15 +102,6 @@ class AppointmentStudentController extends Controller
             'student_id' => $validated['student_id'],
         ]);
 
-        return redirect()->route('appointments.index')->with('success', 'Appointment updated successfully!');
-    }
-
-
-
-    public function show($id)
-    {
-        $appointment = Appointment::with(['teacher', 'company', 'student'])->findOrFail($id);
-
-        return view('appointments.show', compact('appointment'));
+        return redirect()->route('admin.appointments.index')->with('success', 'Appointment updated successfully!');
     }
 }

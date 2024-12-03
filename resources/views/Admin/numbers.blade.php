@@ -12,16 +12,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr><td>Sinh Viên</td><td>{{$students}}</td></tr>
-        <tr><td>Giáo Viên</td><td>{{$teachers}}</td></tr>
-        <tr><td>Công Ty</td><td>{{$companys}}</td></tr>
-        <tr><td>Tổng số tài khoản</td><td>{{$users}}</td></tr>
+        <tr><td>Sinh Viên</td><td>{{$studentCount}}</td></tr>
+        <tr><td>Giáo Viên</td><td>{{$teacherCount}}</td></tr>
+        <tr><td>Công Ty</td><td>{{$companyCount}}</td></tr>
+        <tr><td>Tổng số tài khoản</td><td>{{$usersCount}}</td></tr>
     </tbody>
 </table>
 
 <!-- Additional Data Sections -->
-<h1>2. Số lượng blog: {{$blogs}}</h1>
-<h1>3. Số lượng tin nhắn: {{$messages}}</h1>
+<h1>2. Số lượng blog: {{$blogCount}}</h1>
+<h1>3. Số lượng tin nhắn: {{$messageCount}}</h1>
 
 <h1>4. Số lượng sinh viên theo kỹ năng:</h1>
 <table class="table table-hover">
@@ -32,7 +32,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($skill_all as $item)
+        @foreach ($skillStats as $item)
             <tr><td>{{$item['name']}}</td><td>{{$item['total']}}</td></tr>
         @endforeach
     </tbody>
@@ -47,7 +47,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($skill_all2 as $item)
+        @foreach ($skillStats2 as $item)
             <tr><td>{{$item['name']}}</td><td>{{$item['total']}}</td></tr>
         @endforeach
     </tbody>
@@ -62,7 +62,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($skill_all3 as $item)
+        @foreach ($skillStats3 as $item)
             <tr><td>{{$item['name']}}</td><td>{{$item['total']}}</td></tr>
         @endforeach
     </tbody>

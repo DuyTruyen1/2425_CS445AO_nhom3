@@ -7,12 +7,28 @@
     border: 1px solid;
 } */
 </style>
+
+
+
+
 <div class="container">
     <a class="position-absolute" id="btnCV" href="./Pages/Student/CV/{{Auth::user()->id}}"><button type="reset2" class="btn btn-warning dark-mode" >CV Cá Nhân</button></a>
     <form class="" method="POST" action="./Pages/Student/updateProfile/{{Auth::user()->id}}" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
         <button type="submit" class="btn btn-warning dark-mode" >Ghi nhận</button>
-
+        {{-- @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                toastr.error("{{ $error }}");
+            </script>
+        @endforeach
+    @endif
+    
+    <script>
+        @if (session()->has('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+    </script> --}}
         <div class="row dark-mode">
             <div class="col-md-6 dark-mode">
                 <div class="card shadow mb-4 dark-mode">
@@ -31,6 +47,7 @@
                             <input type="hidden" name="id" value="{{Auth::user()->id}}">
                             <label for="studentCode">Mã sinh viên</label>
                             <input name="studentCode" type="text" value="{{$student->studentCode}}" class="form-control dark-mode" placeholder="" id="txtStudentCode">
+
                             <label for="studentName">Tên sinh viên</label>
                             <input name="name"  type="text" readonly value="{{Auth::user()->name}}" class="form-control dark-mode" placeholder="" id="txtStudentName">
 
@@ -40,6 +57,7 @@
 
 
                             <label for="studentGender"> Giới tính:</label>
+
                             <p></p>
 
                             <input  id="txtStudentGender" <?php if($student->gender=="Nam"){echo "checked";}?>  value="Nam" type="radio" class=" dark-mode form-check-inline" name="gender">Nam
@@ -79,6 +97,7 @@
                         </div>
                         <label for="major">Ngành</label>
                         <input value="{{$student->major}}" name="major" type="text" class="form-control dark-mode" placeholder="" id="txtMajor">
+
                         <div class="form-group">
                             <label for="level">Bậc</label>
                             <select value="{{$student->level}}" name="level" class="form-control dark-mode" id="sel1">
@@ -145,12 +164,16 @@
 
                     <label for="city">Tỉnh/Thành phố</label>
                     <input value="{{$student->city}}" name="city" type="text" class="form-control dark-mode" placeholder="" id="txtCity">
+
                     <label for="district">Quận/Huyện</label>
                     <input value="{{$student->district}}" name="district" type="text" class="form-control dark-mode" placeholder="" id="txtDistrict">
+
                     <label for="commune">Xã</label>
                     <input value="{{$student->commune}}" name="commune" type="text" class="form-control dark-mode" placeholder="" id="txtCommune">
+
                     <label for="street">Đường</label>
                     <input value="{{$student->street}}" name="street" type="text" class="form-control dark-mode" placeholder="" id="txtStreet">
+
                     <label for="homeNumber">Số nhà</label>
                     <input value="{{$student->homeNumber}}" name="homeNumber" type="number" class="form-control dark-mode" placeholder="" id="txtHomeNumber">
 
@@ -164,9 +187,11 @@
 
                     <label for="GPA">GPA tích luỹ</label>
                     <input value="{{$student->gpa}}" name="gpa" type="text" class="form-control dark-mode" placeholder="" id="txtGPA">
+
                     <label for="Prize">Khen thưởng/giải thưởng</label>
                     <textarea name="prize" value="{{$student->prize}}" id="txtPrize" rows="5" class="ckeditor form-control"><?php echo $student->prize?></textarea>
                     <label for="forte">Kỹ năng</label>
+
                     <table>
                     @if($skillcheck)
                         @foreach($skill as $ski)
@@ -202,4 +227,5 @@
         </div>
     </form>
 </div>
+
 @endsection

@@ -43,7 +43,7 @@
             </textarea>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary dark-mode">Đăng bài</button>
+            <button type="submit" class="btn btn-warning dark-mode">Đăng bài</button>
         </div>
     </form>
 

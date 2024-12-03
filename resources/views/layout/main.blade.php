@@ -30,6 +30,7 @@
     <link href="{{url('/backend')}}/css/animate.css" rel="stylesheet">
     <link href="{{url('/backend')}}/css/style.css" rel="stylesheet">
     <link href="{{url('/backend')}}/css/plugins/summernote/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 </head>
 
@@ -49,6 +50,7 @@
                             <!-- <li><a class="dropdown-item" href="">change_password</a></li> -->
                         </ul>
                     </div>
+                    
                     <div class="logo-element">
                         IN+
                     </div>
@@ -74,8 +76,17 @@
                  <a href="{{route('feedback')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Quản lý phản hồi</span></a>
                 </li>
                 <li>
-                    <a href="{{route('skill')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Quản tin kỹ năng</span></a>
-                </li> 
+                    <a href="{{route('skill')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Quản lý kỹ năng</span></a>
+                </li>
+                <li>
+                    <a href="{{route('admin.appointments.create')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Quản lý cuộc họp</span></a>
+                </li>
+                <li>
+                    <a href="{{route('admin.appointments.index')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Thông tin cuộc họp</span></a>
+                </li>
+                <li>
+                    <a href="{{route('admin.jitsi-meet')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Tạo cuộc họp</span></a>
+                </li>
             </ul>
 
         </div>
@@ -89,7 +100,7 @@
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
             <form role="search" class="navbar-form-custom" action="search_results.html">
                 <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                    {{-- <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search"> --}}
                 </div>
             </form>
         </div>
@@ -102,7 +113,7 @@
         </div>
 
 
-        <div class="wrapper wrapper-content">
+        {{-- <div class="wrapper wrapper-content">
             @if(\Session::has('success'))
             <div class="alert alert-success alert-dismissable">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -114,9 +125,21 @@
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Thất bại! </strong> {{\Session::get('danger')}}
             </div>
-            @endif
+            @endif --}}
+            <script>
+                @if (session()->has('success'))
+                    toastr.success("{{ session('success') }}");
+                @endif
+            
+                @if ($errors->has('message'))
+                    toastr.error("{{ $errors->first('message') }}");
+                @endif
+            </script>
             @yield('content')
        
+
+            
+            
         </div>
 
 
@@ -199,14 +222,24 @@
    <script src="{{url('/backend')}}/js/plugins/dataTables/datatables.min.js"></script>
     <script src="{{url('/backend')}}/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
     <script src="{{url('/backend')}}/js/ajax.js"></script>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
 
             $('.summernote').summernote();
 
        });
+       $(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
+});
+
     </script>
+    
 </body>
+
 </html>

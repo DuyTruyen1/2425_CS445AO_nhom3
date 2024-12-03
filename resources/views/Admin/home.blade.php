@@ -34,7 +34,7 @@
                     <div class="card-header">Tổng số tin nhắn</div>
                     <div class="card-body">
                         <h5 class="card-title">{{ $messagesCount }}</h5>
-                        <p class="card-text">Số lượng tin nhắn bạn nhận được.</p>
+                        <p class="card-text">Số lượng tin nhắn hiện có trong hệ thống.</p>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     <div class="card-header">Tổng số phản hồi</div>
                     <div class="card-body">
                         <h5 class="card-title">{{ $feedbacksCount }}</h5>
-                        <p class="card-text">Số lượng phản hồi từ người dùng.</p>
+                        <p class="card-text">Số lượng phản hồi hiện có từ người dùng.</p>
                     </div>
                 </div>
             </div>
@@ -60,8 +60,6 @@
                         <th>ID</th>
                         <th>Tên người dùng</th>
                         <th>Email</th>
-                        <th>Chức vụ</th>
-                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,14 +68,11 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
-                            <td>
-
-                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            
         </div>
     </div>
 @stop()

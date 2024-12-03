@@ -39,7 +39,7 @@
         <a class="eye" href="javascript:;void(0);"><i class="fa fa-eye dark-mode"></i></a>
         
     </div>
-    <button type="submit" class="btn btn-primary dark-mode"><i class="white fa fa-save dark-mode"></i>  Submit</button>
+    <button type="submit" class="btn btn-warning dark-mode"><i class="white fa fa-save dark-mode"></i>  Submit</button>
   </form>
 @stop
 @section('script')

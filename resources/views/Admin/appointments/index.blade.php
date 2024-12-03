@@ -1,8 +1,8 @@
-@extends('Pages.layout.menu')
+@extends('layout.main')
 @section('content')
 <div class="container">
     <h1>Appointment List</h1>
-    <a href="{{ route('appointments.create') }}" class="btn btn-warning mb-3">Create New Appointment</a>
+    <a href="{{ route('admin.appointments.create') }}" class="btn btn-warning mb-3">Create New Appointment</a>
 
     @if ($appointments->count() > 0)
         <table class="table table-bordered">
@@ -39,8 +39,8 @@
                     <td>{{ $appointment->company->id ?? 'N/A' }}</td>
                     <td>{{ $appointment->student->id ?? 'N/A' }}</td>
                     <td>
-                        <a href="{{ route('appointments.edit', $appointment->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('appointments.destroy', $appointment->id) }}" method="POST" class="d-inline">
+                        <a href="{{ route('admin.appointments.edit', $appointment->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('admin.appointments.destroy', $appointment->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>

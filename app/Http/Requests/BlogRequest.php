@@ -11,7 +11,7 @@ class BlogRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -19,8 +19,21 @@ class BlogRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
-        return [];
+        return [
+            'Tieude' => 'required',
+            'Noidung' => 'required',
+            'Tomtat' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'Tieude.required' => 'Bạn chưa nhập tiêu đề',
+            'Noidung.required' => 'Bạn chưa nhập nội dung',
+            'Tomtat.required' => 'Bạn chưa nhập tóm tắt',
+        ];
     }
 }

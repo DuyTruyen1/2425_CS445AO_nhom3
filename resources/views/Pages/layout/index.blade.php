@@ -11,6 +11,9 @@
     <link href="asset/CSS/Lib/jquery-ui.min.css" rel="stylesheet" />
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    
     <!-- Our Custom CSS -->
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -33,7 +36,7 @@
                     <div class="content">
                         @include('Pages.layout.header')
                         <div class="content-body dark-mode bg-light">
-                            @if(!empty($success))
+                            {{-- @if(!empty($success))
                             <div class="alert alert-success alert-dismissable">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong>Thành công! </strong> {{$success}}
@@ -56,7 +59,20 @@
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong>Thất bại! </strong> {{\Session::get('danger')}}
                             </div>
+                            @endif --}}
+                            @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <script>
+                                    toastr.error("{{ $error }}");
+                                </script>
+                            @endforeach
+                        @endif
+                        
+                        <script>
+                            @if (session()->has('success'))
+                                toastr.success("{{ session('success') }}");
                             @endif
+                        </script>
                             @yield('content')
 
                         </div>
@@ -87,6 +103,12 @@
     <script src="asset/JS/pages/Sidebar.js"></script>
     <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
+
     {{-- <script src="{{url('/asset')}}/JS/Lib/jquery-3.5.1.min"> </script> --}}
 </body>
 </html>

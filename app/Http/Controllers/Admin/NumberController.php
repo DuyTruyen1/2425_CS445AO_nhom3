@@ -25,13 +25,13 @@ class NumberController extends Controller
         $skillStats2 = Fk_Skill::select('skill.name', DB::raw('count(*) as total'))
             ->join('skill', 'skill.id', '=', 'fk_skill.skill_id')
             ->groupBy('skill.name')
-            ->join('teachers', 'teachers.id', '=', 'fk_skill.teacher_id')
+            ->join('teacher', 'teacher.id', '=', 'fk_skill.teacher_id')
             ->get()
             ->toArray();
         $skillStats3 = Fk_Skill::select('skill.name', DB::raw('count(*) as total'))
             ->join('skill', 'skill.id', '=', 'fk_skill.skill_id')
             ->groupBy('skill.name')
-            ->join('companies', 'companies.id', '=', 'fk_skill.company_id')
+            ->join('company', 'company.id', '=', 'fk_skill.company_id')
             ->get()
             ->toArray();
         $companyCount = Users::where('category', 1)->count();

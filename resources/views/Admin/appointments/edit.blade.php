@@ -1,9 +1,9 @@
-@extends('Pages.layout.menu')
+@extends('layout.main')
 @section('content')
 <div class="container">
   <h1 class="mt-4">Chỉnh sửa cuộc hẹn</h1>
   
-  <form action="{{ route('appointments.update', $appointment->id) }}" method="POST">
+  <form action="{{ route('admin.appointments.update', $appointment->id) }}" method="POST">
       @csrf
       @method('PUT')
       
@@ -69,7 +69,7 @@
       </div>
 
       <button type="submit" class="btn btn-warning">Cập nhật</button>
-      <a href="{{ route('appointments.index') }}" class="btn btn-secondary">Hủy</a>
+      <a href="{{ route('admin.appointments.index') }}" class="btn btn-secondary">Hủy</a>
   </form>
 </div>
 @endsection

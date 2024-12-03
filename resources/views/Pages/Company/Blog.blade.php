@@ -1,105 +1,111 @@
 @extends('Pages.layout.menu')
 @section('content')
-<div class="container bg-dark text-white">
+
+<!-- Form Đăng Bài -->
+<div class="container p-5 bg-dark text-white rounded shadow mt-4">
+    <h2 class="text-center mb-4">Đăng Bài Viết</h2>
+{{--     
     @if(count($errors) > 0)
         <div class="alert alert-danger">
             @foreach($errors->all() as $err)
-                {{$err}}<br>
+                {{ $err }}<br>
             @endforeach
         </div>
     @endif
 
     @if(session('thongbao'))
         <div class="alert alert-success">
-            {{session('thongbao')}}
+            {{ session('thongbao') }}
         </div>
-    @endif
+    @endif --}}
 
     <form action="Pages/Company/Blog" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name ="_token" value="{{ csrf_token()}}"/>
-        <div class="form-group">
-            <label for="Tieude">Tiêu đề</label>
-            <input class="form-control dark-mode" name="Tieude" id="Tieude" placeholder="Nhập tiêu đề">
+        @csrf
+        <div class="mb-3">
+            <label for="Tieude" class="form-label">Tiêu đề</label>
+            <input type="text" class="form-control dark-mode" name="Tieude" id="Tieude" placeholder="Nhập tiêu đề">
+            @error('Tieude')
+                <div class="text-danger mt-2">{{ $message }}</div>
+            @enderror
         </div>
 
-        <div class="form-group">
-            <label for="Hinhanh">Hình ảnh</label>
+        <div class="mb-3">
+            <label for="Hinhanh" class="form-label">Hình ảnh</label>
             <input type="file" name="Hinh" id="Hinh" class="form-control dark-mode">
         </div>
 
-        <div class="form-group">
-            <label for="">Tóm tắt</label>
+        <div class="mb-3">
+            <label for="Tomtat" class="form-label">Tóm tắt</label>
             <textarea name="Tomtat" id="Tomtat" cols="30" rows="2" class="ckeditor form-control dark-mode"></textarea>
+            @error('Tomtat')
+            <div class="text-danger mt-2">{{ $message }}</div>
+            @enderror
         </div>
-        <div class="form-group">
-            <label for="">Nội dung</label>
-            <textarea name="Noidung" id="Nodung" cols="30" rows="4" class="ckeditor form-control dark-mode"></textarea>
+
+        <div class="mb-3">
+            <label for="Noidung" class="form-label">Nội dung</label>
+            <textarea name="Noidung" id="Noidung" cols="30" rows="4" class="ckeditor form-control dark-mode"></textarea>
+            @error('Noidung')
+                <div class="text-danger mt-2">{{ $message }}</div>
+            @enderror
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-warning dark-mode">Đăng bài</button>
-        </div>
+
+        <button type="submit" class="btn btn-warning w-100 dark-mode">Đăng bài</button>
     </form>
-
 </div>
 
-
-<div class="container border" >
-    <h1>Các blog của tôi</h1>
-    <div class="row2">
-        <div class="col-sm-12">
-            <table class=" dark-mode bg-black table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                <thead>
-                    <tr role="row2">
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="2" style="width: 6em !important">ID blog</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="2" style="width: 6em !important">ID tus</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="4" style="width: 5em !important;">Ngày tạo</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="2" style="width: 2em !important;">Ngày đăng</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="2" style="width: 10em !important;">Tiêu đề</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="2" style="width: 2em !important;">Sửa</th>
-                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="2" style="width: 2em !important;">Xóa</th>
-                    </tr>
-                </thead>
-                {{-- <tfoot>
-                    <tr>
-                        <th rowspan="1" colspan="2">ID blog</th>
-                        <th rowspan="1" colspan="2">ID tus</th>
-                        <th rowspan="1" colspan="4">Ngày tạo</th>
-                        <th rowspan="1" colspan="2">Ngày đăng</th>
-                        <th rowspan="1" colspan="2">Tiêu đề</th>
-                        <th rowspan="1" colspan="2">Sửa</th>
-                        <th rowspan="1" colspan="2">Xóa</th>
-                    </tr>
-                </tfoot> --}}
-                <tbody>
-                    @foreach($BL_cpn as $blg)
-                        <tr role="row" class="even">
-                        <td colspan="2">{{$blg->id_blog}}</td>
-                        <td colspan="4">{{$blg->id}}</td>
-                        <td colspan="2">{{$blg->created_at}}</td>
-                        <td colspan="2">{{$blg->updated_at}}</td>
-                        <td colspan="2">{{$blg->title}}</td>
-                        <form action="Pages/Company/getUpdateBlog/{{$blg->id_blog}} " method="get" enctype="multipart/form-data">
-                        <input type="hidden" name ="_token" value="{{csrf_token()}}"/>
-                            <td colspan="2"><button type="submit" class="btn btn-primary dark-mode">Sửa</button></td>
+<!-- Bảng Hiển Thị Blog -->
+<div class="container mt-5 p-4 bg-light rounded shadow">
+    <h2 class="text-center mb-4">Các Blog Của Tôi</h2>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered bg-black text-black align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID Blog</th>
+                    <th>ID Tus</th>
+                    <th>Ngày Tạo</th>
+                    <th>Ngày Đăng</th>
+                    <th>Tiêu Đề</th>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($BL_cpn as $blg)
+                <tr>
+                    <td>{{ $blg->id_blog }}</td>
+                    <td>{{ $blg->id }}</td>
+                    <td>{{ $blg->created_at }}</td>
+                    <td>{{ $blg->updated_at }}</td>
+                    <td>{{ $blg->title }}</td>
+                    <td>
+                        <form action="Pages/Company/getUpdateBlog/{{ $blg->id_blog }}" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-primary btn-sm dark-mode">Sửa</button>
                         </form>
-                        <form action="Pages/Company/delBlog/{{$blg->id_blog}}" method="get" enctype="multipart/form-data">
-                        <input type="hidden" name ="_token" value="{{csrf_token()}}"/>
-                            <td colspan="2"><button type="submit" class="btn btn-danger dark-mode">Xóa</button></td>
+                    </td>
+                    <td>
+                        <form action="Pages/Company/delBlog/{{ $blg->id_blog }}" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm dark-mode">Xóa</button>
                         </form>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-    <div class="row2">
-        <div class="col-sm-12 col-md-5">
-            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite"></div>
-        </div>
-        <div>
-            {{ $BL_cpn->links() }}
-        </div>
+
+    <div class="d-flex justify-content-center mt-3">
+        {{ $BL_cpn->links() }}
     </div>
 </div>
+
+<!-- Thêm CKEditor -->
+<script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('Tomtat');
+    CKEDITOR.replace('Noidung');
+</script>
 
 @endsection

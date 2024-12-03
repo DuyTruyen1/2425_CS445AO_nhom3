@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Http\Requests\RequestPassword;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RequestRegistration;
+use App\Http\Requests\FeedbackRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,7 +37,7 @@ class UserController extends Controller
             // Định nghĩa các route điều hướng tùy thuộc vào category của người dùng
             $routes = [
                 '1' => 'company-home',
-                // '2' => 'teacher-home', // Uncomment và cập nhật nếu cần thêm
+                '2' => 'teacher-home',
                 '3' => 'student-home',
             ];
 
@@ -106,7 +107,7 @@ class UserController extends Controller
         return redirect()->back()->with('danger', "Mật khẩu cũ không đúng");
     }
 
-    public function postHelp(Request $request)
+    public function postHelp(FeedbackRequest $request)
     {
         $category = category::all()[7];
         $feedback = new feedback;

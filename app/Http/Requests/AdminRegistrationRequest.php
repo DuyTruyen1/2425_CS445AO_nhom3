@@ -22,10 +22,11 @@ class AdminRegistrationRequest extends FormRequest
     public function rules()
     {
         return [
+            'name' => 'required',
             'email' => [
                 'required',
-                'email', // Phải là định dạng email
-                'unique:admin,email', // Email không được trùng
+                'email',
+                'unique:admin,email',
             ],
             'password' => [
                 'required',
@@ -33,6 +34,8 @@ class AdminRegistrationRequest extends FormRequest
                 'min:8', // Ít nhất 8 ký tự
                 'regex:/[A-Z]/', // Ít nhất 1 ký tự in hoa
                 'regex:/[!@#$%^&*(),.?":{}|<>]/', // Ít nhất 1 ký tự đặc biệt
+                'confirmed', // Kiểm tra xác nhận mật khẩu
+
             ],
         ];
     }
@@ -40,12 +43,14 @@ class AdminRegistrationRequest extends FormRequest
     public function messages()
     {
         return [
+            'name.required' => 'Tên là bắt buộc',
             'email.required' => 'Email là bắt buộc.',
             'email.email' => 'Email không đúng định dạng.',
             'email.unique' => 'Email đã tồn tại, vui lòng chọn email khác.',
             'password.required' => 'Mật khẩu là bắt buộc.',
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
             'password.regex' => 'Mật khẩu phải chứa ít nhất 1 ký tự in hoa và 1 ký tự đặc biệt.',
+            'password.confirmed' => 'Mật khẩu xác nhận không khớp.', // Thêm thông báo lỗi khi mật khẩu xác nhận không khớp
         ];
     }
 }

@@ -27,14 +27,18 @@
                             <input name="name" value="{{Auth::user()->name}}"  readonly  type="text" class="form-control dark-mode" placeholder="" id="txtCompanyName">
                             <label for="address">Địa chỉ</label>
                             <textarea name="address"  id="txtAddress"  class="form-control dark-mode" rows="5"> <?php echo $company->address?></textarea>
+
                             <label for="emailOther">Địa chỉ email</label>
                             <input  name="email" value="{{Auth::user()->email}}" readonly type="email" class="form-control dark-mode" placeholder="" id="txtEmailOther">
                             <label for="mobile">Số điện thoại</label>
+
                             <input  name="mobile" value="{{$company->mobile}}" type="tel" class="form-control dark-mode" placeholder="" id="txtMobile">
                             <label for="fax">Số Fax</label>
                             <input  name="fax" value="{{$company->fax}}" type="tel" class="form-control dark-mode" placeholder="" id="txtFax">
+
                             <label for="yearEstablish">Số năm thành lập</label>
                             <input  name="yearEstablish" value="{{$company->yearEstablish}}" type="number" class="form-control dark-mode" placeholder="" id="txtYearEstablish">
+  
                         </form>
                     </div>
                 </div>
@@ -73,12 +77,16 @@
                         <!-- <textarea  name="offer" value=""class="form-control dark-mode" rows="5" id="txtOffer"> </textarea> -->
                         <label for="numbers">Số lượng</label>
                         <input  name="numbers" value="{{$company->numbers}}"type="number" class="form-control dark-mode" name="numbers" value="" id="txtNumbers" />
+    
                         <label for="salary">Lương</label>
                         <input  name="salary" value="{{$company->salary}}"type="text" class="form-control dark-mode" placeholder="" id="txtSalary">
+
                         <label for="bonus">Đãi ngộ</label>
                         <textarea  name="bonus" value=""class="form-control dark-mode" rows="5" id="txtBonus"><?php echo $company->bonus?></textarea>
+  
                         <label for="startDayOffer">Ngày bắt đầu đợt tuyển</label>
                         <input  name="startDayOffer" value="{{$company->startDayOffer}}"type="date" class="form-control dark-mode"  id="txtStartDayOffer">
+            
                         <label for="endDayOffer">Ngày kết thúc đợt tuyển</label>
                         <input  name="endDayOffer" value="{{$company->endDayOffer}}"type="date" class="form-control dark-mode" placeholder="" id="txtEndDayOffer">
                     </form>

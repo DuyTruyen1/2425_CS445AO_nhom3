@@ -18,7 +18,9 @@ use App\Models\Skill;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostBlogRequest;
+use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Support\Str;
+use Brian2694\Toastr\Facades\Toastr;
 
 class StudentController extends Controller
 {
@@ -345,7 +347,7 @@ class StudentController extends Controller
     }
 
 
-    public function postUpdate(Request $request, $id)
+    public function postUpdate(UpdateStudentRequest $request, $id)
     {
         $kcheck = [];
         $skill = skill::all();
@@ -353,13 +355,15 @@ class StudentController extends Controller
         $category = category::all()[1];
         $student = student::find($id);
 
+        // Kiểm tra sinh viên có tồn tại hay không
         if ($student == null) {
             $student2 = new student;
             $student2->id = $request->id;
+
+            // Cập nhật các trường dữ liệu của sinh viên
             $student2->studentCode = $request->studentCode;
             $student2->birth = $request->birth;
             $student2->gender = $request->gender;
-            $student2->studentCode = $request->studentCode;
             $student2->mobile = $request->mobile;
             $student2->department = $request->department;
             $student2->major = $request->major;
@@ -381,10 +385,14 @@ class StudentController extends Controller
             $student2->created_at = $request->created_at;
             $student2->updated_at = $request->updated_at;
             $student2->yearOfCourse = $request->yearOfCourse;
+
+            // Xử lý ảnh nếu có
             if ($request->hasFile('Hinh')) {
                 $file = $request->file('Hinh');
                 $duoi = $file->getClientOriginalExtension();
                 if ($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg') {
+                    // Nếu không phải định dạng ảnh cho phép, báo lỗi nhưng không ngừng cập nhật các trường khác
+                    return redirect()->back()->withErrors(['Hinh' => 'Ảnh phải có định dạng jpg, png, jpeg']);
                 }
                 $name = $file->getClientOriginalName();
                 $Hinh = Str::random(4) . '_' . $name;
@@ -394,7 +402,10 @@ class StudentController extends Controller
                 $file->move('upload/student', $Hinh);
                 $student2->Hinh = $Hinh;
             }
+
+            // Lưu student mới
             if ($student2->save()) {
+                // Xử lý kỹ năng nếu có
                 if ($skill_id) {
                     FK_Skill::where('student_id', $id)->delete();
                     foreach ($skill_id as $sk) {
@@ -404,6 +415,8 @@ class StudentController extends Controller
                     FK_Skill::where('student_id', $id)->delete();
                 }
             }
+
+            // Lấy danh sách kỹ năng của sinh viên
             $skill_all = Fk_Skill::select('skill.name')
                 ->join('skill', 'skill.id', '=', 'fk_skill.skill_id')
                 ->join('students', 'students.id', '=', 'fk_skill.student_id')
@@ -412,12 +425,20 @@ class StudentController extends Controller
             foreach ($skill_all as $k) {
                 array_push($kcheck, $k['name']);
             }
-            return view('Pages.Student.Profile', ['student' => $student2, 'category' => $category, 'skill' => $skill, 'skillcheck' => $kcheck])->with('success', 'Bạn cập nhật thành công!');
+
+            // Gửi thông báo thành công và trả về response
+            return redirect()->route('student.profile', ['id' => $student2->id])
+                ->with([
+                    'category' => $category,
+                    'skill' => $skill,
+                    'skillcheck' => $kcheck,
+                    'success' => 'Bạn cập nhật thành công!'
+                ]);
         } else {
+            // Cập nhật sinh viên hiện tại
             $student->studentCode = $request->studentCode;
             $student->birth = $request->birth;
             $student->gender = $request->gender;
-            $student->studentCode = $request->studentCode;
             $student->mobile = $request->mobile;
             $student->department = $request->department;
             $student->major = $request->major;
@@ -439,10 +460,14 @@ class StudentController extends Controller
             $student->created_at = $request->created_at;
             $student->updated_at = $request->updated_at;
             $student->yearOfCourse = $request->yearOfCourse;
+
+            // Xử lý ảnh nếu có
             if ($request->hasFile('Hinh')) {
                 $file = $request->file('Hinh');
                 $duoi = $file->getClientOriginalExtension();
                 if ($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg') {
+                    // Nếu không phải định dạng ảnh cho phép, báo lỗi nhưng không ngừng cập nhật các trường khác
+                    return redirect()->back()->withErrors(['Hinh' => 'Ảnh phải có định dạng jpg, png, jpeg']);
                 }
                 $name = $file->getClientOriginalName();
                 $Hinh = Str::random(4) . '_' . $name;
@@ -452,7 +477,10 @@ class StudentController extends Controller
                 $file->move('upload/student', $Hinh);
                 $student->Hinh = $Hinh;
             }
+
+            // Lưu sinh viên đã cập nhật
             if ($student->save()) {
+                // Xử lý kỹ năng nếu có
                 if ($skill_id) {
                     FK_Skill::where('student_id', $id)->delete();
                     foreach ($skill_id as $sk) {
@@ -462,6 +490,8 @@ class StudentController extends Controller
                     FK_Skill::where('student_id', $id)->delete();
                 }
             }
+
+            // Lấy danh sách kỹ năng của sinh viên
             $skill_all = Fk_Skill::select('skill.name')
                 ->join('skill', 'skill.id', '=', 'fk_skill.skill_id')
                 ->join('students', 'students.id', '=', 'fk_skill.student_id')
@@ -470,9 +500,21 @@ class StudentController extends Controller
             foreach ($skill_all as $k) {
                 array_push($kcheck, $k['name']);
             }
-            return view('Pages.Student.Profile', ['student' => $student, 'category' => $category, 'skill' => $skill, 'skillcheck' => $kcheck])->with('success', 'Bạn cập nhật thành công!');
+
+            // Gửi thông báo thành công và trả về response
+            return redirect()->route('student.profile', ['id' => $student->id])
+                ->with([
+                    'category' => $category,
+                    'skill' => $skill,
+                    'skillcheck' => $kcheck,
+                    'success' => 'Bạn cập nhật thông tin sinh viên thành công!'
+                ]);
         }
     }
+
+
+
+
 
     public function getCV($id)
     {

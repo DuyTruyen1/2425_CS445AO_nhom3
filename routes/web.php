@@ -9,12 +9,14 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\NumberController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\AppointmentAdminController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Users\CompanyController;
 use App\Http\Controllers\Users\StudentController;
+use App\Http\Controllers\Users\TeacherController;
 use App\Http\Controllers\JitsiController;
-use App\Http\Controllers\Users\AppointmentStudentController;
-use App\Http\Controllers\Users\AppointmentCompanyController;
+use App\Http\Controllers\Users\ShowMeetingController;
+
 
 
 
@@ -45,6 +47,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('deleteUser', [AdminController::class, 'delete_user']);
     Route::get('deleteBlog', [BlogController::class, 'getBlog'])->name('delete_blog');
     Route::post('deleteBlog', [BlogController::class, 'deleteBlog']);
+    Route::delete('admin/user/{id}', [AdminController::class, 'destroyAcc'])->name('admin.userAcc.delete');
 
     //Category
     Route::get('category', [CategoryController::class, 'category'])->name('category');
@@ -59,6 +62,26 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('edit_skill/{id}', [SkillController::class, 'editSkill'])->name('edit_skill');
     Route::post('ajax_edit_skill/{id}', [SkillController::class, 'postEditSkill']);
     Route::get('/delete-skill/{id}', [SkillController::class, 'deleteSkill']);
+
+    Route::get('/jitsi-meet', [JitsiController::class, 'index'])->name('admin.jitsi-meet');
+
+    Route::get('appointments', [AppointmentAdminController::class, 'index'])->name('admin.appointments.index');
+
+    Route::get('appointments/create', [AppointmentAdminController::class, 'create'])->name('admin.appointments.create');
+
+    // Lưu cuộc hẹn vào cơ sở dữ liệu (Admin)
+    Route::post('appointments', [AppointmentAdminController::class, 'store'])->name('admin.appointments.store');
+
+    // Hiển thị chi tiết một cuộc hẹn (Admin)
+
+    // Hiển thị form chỉnh sửa cuộc hẹn (Admin)
+    Route::get('appointments/{appointment}/edit', [AppointmentAdminController::class, 'edit'])->name('admin.appointments.edit');
+
+    // Cập nhật cuộc hẹn (Admin)
+    Route::put('appointments/{appointment}', [AppointmentAdminController::class, 'update'])->name('admin.appointments.update');
+
+    // Xóa cuộc hẹn (Admin)
+    Route::delete('appointments/{appointment}', [AppointmentAdminController::class, 'destroy'])->name('admin.appointments.destroy');
 });
 
 //users
@@ -67,6 +90,9 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
     Route::post('Setting', [UserController::class, 'saveUpdatePassword']);
     Route::get('Help', [UserController::class, 'getHelp'])->name('get-help');
     Route::post('Help', [UserController::class, 'postHelp']);
+    Route::get('/meetings', [ShowMeetingController::class, 'showMeetings']);
+    // Route::get('/meetings', [ShowMeetingController::class, 'showMeetings']);
+
 
 
     Route::group(['prefix' => 'Student'], function () {
@@ -81,7 +107,7 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
         Route::get('DS1', [StudentController::class, 'getDS1']);
         Route::get('DS2', [StudentController::class, 'getDS2']);
 
-        Route::get('Profile/{id}', [StudentController::class, 'getProfile']);
+        Route::get('Profile/{id}', [StudentController::class, 'getProfile'])->name('student.profile');
 
         Route::get('CV/{id}', [StudentController::class, 'getCV']);
         Route::get('Share/{id}', [StudentController::class, 'getShare']);
@@ -90,26 +116,29 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
         Route::get('messenger-student/{id}', [StudentController::class, 'messenger'])->name('messenger-student');
         Route::post('send-mes', [StudentController::class, 'send_Messenger']);
         Route::post('load-mes', [StudentController::class, 'load_Mes']);
+    });
 
-        Route::get('/jitsi-meet', [JitsiController::class, 'index']);
-        // Hiển thị danh sách cuộc hẹn
-        Route::get('appointments', [AppointmentStudentController::class, 'index'])->name('appointments.index');
+    Route::group(['prefix' => 'Teacher'], function () {
+        Route::get('Home', [TeacherController::class, 'getHome'])->name('teacher-home');
 
-        // Hiển thị form tạo cuộc hẹn
-        Route::get('appointments/create', [AppointmentStudentController::class, 'create'])->name('appointments.create');
+        Route::get('Blog', [TeacherController::class, 'getBlog']);
+        Route::post('Blog', [TeacherController::class, 'postBlog']);
+        Route::post('updateBlog/{id_blog}', [TeacherController::class, 'updateBlog']);
+        Route::get('getUpdateBlog/{id_blog}', [TeacherController::class, 'getUpdateBlog']);
+        Route::get('delBlog/{id_blog}', [TeacherController::class, 'delBlog']);
 
-        // Lưu cuộc hẹn vào cơ sở dữ liệu
-        Route::post('appointments', [AppointmentStudentController::class, 'store'])->name('appointments.store');
+        Route::get('DS1', [TeacherController::class, 'getDS1']);
+        Route::get('DS2', [TeacherController::class, 'getDS2']);
 
-        // Hiển thị chi tiết một cuộc hẹn
-        Route::get('appointments/{appointment}', [AppointmentStudentController::class, 'show'])->name('appointments.show');
+        Route::get('Profile/{id}', [TeacherController::class, 'getProfile'])->name('teacher.profile');
 
-        Route::get('appointments/{appointment}/edit', [AppointmentStudentController::class, 'edit'])->name('appointments.edit');
-
-        Route::put('appointments/{appointment}', [AppointmentStudentController::class, 'update'])->name('appointments.update');
-
-        // Xóa cuộc hẹn
-        Route::delete('appointments/{appointment}', [AppointmentStudentController::class, 'destroy'])->name('appointments.destroy');
+        Route::get('CV/{id}', [TeacherController::class, 'getCV']);
+        Route::get('Share/{id}', [TeacherController::class, 'getShare']);
+        Route::get('Share2/{id_blog}', [TeacherController::class, 'getShare2']);
+        Route::post('updateProfile/{id}', [TeacherController::class, 'postUpdate']);
+        Route::get('messenger-student/{id}', [TeacherController::class, 'messenger'])->name('messenger-teacher');
+        Route::post('send-mes', [TeacherController::class, 'send_Messenger']);
+        Route::post('load-mes', [TeacherController::class, 'load_Mes']);
     });
 
 
@@ -124,7 +153,7 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
         Route::get('DS1', [CompanyController::class, 'getDS1']);
         Route::get('DS2', [CompanyController::class, 'getDS2']);
 
-        Route::get('Profile/{id}', [CompanyController::class, 'getProfile']);
+        Route::get('Profile/{id}', [CompanyController::class, 'getProfile'])->name('company.profile');
 
         Route::get('CV/{id}', [CompanyController::class, 'getCV']);
         Route::get('Share/{id}', [CompanyController::class, 'getShare']);
@@ -134,26 +163,6 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
         Route::get('messenger-company/{id}', [CompanyController::class, 'messenger'])->name('messenger-company');
         Route::post('send-mes', [CompanyController::class, 'send_messenger']);
         Route::post('load-mes', [CompanyController::class, 'load_mes']);
-
-        Route::get('/jitsi-meet', [JitsiController::class, 'index']);
-        // Hiển thị danh sách cuộc hẹn
-        Route::get('appointments', [AppointmentCompanyController::class, 'index'])->name('appointments.index');
-
-        // Hiển thị form tạo cuộc hẹn
-        Route::get('appointments/create', [AppointmentCompanyController::class, 'create'])->name('appointments.create');
-
-        // Lưu cuộc hẹn vào cơ sở dữ liệu
-        Route::post('appointments', [AppointmentCompanyController::class, 'store'])->name('appointments.store');
-
-        // Hiển thị chi tiết một cuộc hẹn
-        Route::get('appointments/{appointment}', [AppointmentCompanyController::class, 'show'])->name('appointments.show');
-
-        Route::get('appointments/{appointment}/edit', [AppointmentCompanyController::class, 'edit'])->name('appointments.edit');
-
-        Route::put('appointments/{appointment}', [AppointmentCompanyController::class, 'update'])->name('appointments.update');
-
-        // Xóa cuộc hẹn
-        Route::delete('appointments/{appointment}', [AppointmentCompanyController::class, 'destroy'])->name('appointments.destroy');
     });
 });
 

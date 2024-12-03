@@ -1,9 +1,9 @@
-@extends('Pages.layout.menu')
+@extends('layout.main')
 
 @section('content')
 <div class="container mt-5">
     <h2 class="mb-4">Create Appointment</h2>
-    <form action="{{ route('appointments.store') }}" method="POST">
+    <form action="{{ route('admin.appointments.store') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
@@ -63,7 +63,7 @@
 
         <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-warning">Create Appointment</button>
-            <a href="{{ route('appointments.index') }}" class="btn btn-secondary">Cancel</a>
+            <a href="{{ route('admin.appointments.index') }}" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 </div>

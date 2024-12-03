@@ -27,15 +27,22 @@ class AdminController extends Controller
         $blogsCount = Blog::count();
         $messagesCount = Messenger::count();
         $feedbacksCount = Feedback::count();
-        $users = Users::all();
 
-        return view('Admin.home', compact('usersCount', 'blogsCount', 'messagesCount', 'feedbacksCount', 'users'));
+        $users = Users::all();
+        $role = Users::select('category')->get();
+
+
+        // Thêm thông báo vào session
+        return view('Admin.home', compact('usersCount', 'blogsCount', 'messagesCount', 'feedbacksCount', 'users', 'role'))
+            ->with('success', 'Chào mừng quay trở lại!');
     }
 
     public function loginAdmin()
     {
-        return view('Admin.Login_admin');
+        // Trả về view login và truyền thông báo vào session
+        return view('Admin.Login_admin')->with('success', 'Đăng xuất quản trị viên thành công!');
     }
+
 
     public function postLoginAdmin(AdminLoginRequest $request)
     {
@@ -46,22 +53,31 @@ class AdminController extends Controller
         }
     }
 
+
     public function registrationAdmin()
     {
-        return view('Admin.registration_admin1');
+        // Hiển thị view đăng ký với thông báo lỗi qua Toastr
+        return view('Admin.registration_admin1')->with('error', 'Vui lòng đăng ký để tiếp tục.');
     }
 
     public function postRegistrationAdmin(AdminRegistrationRequest $request)
     {
+        // Mã hóa mật khẩu trước khi lưu
         $request->merge(['password' => bcrypt($request->password)]);
+
+        // Tạo tài khoản admin
         $admin = Admin::create($request->all());
 
+        // Kiểm tra nếu tạo thành công
         if ($admin) {
-            return redirect()->route('login-admin');
+            // Thêm thông báo thành công vào session và redirect tới trang login
+            return redirect()->route('login-admin')->with('success', 'Đăng ký thành công! Vui lòng đăng nhập');
         } else {
-            return back()->withErrors(['message' => 'Đăng ký không thành công']);
+            // Thêm thông báo lỗi vào session và quay lại trang đăng ký
+            return back()->withErrors(['message' => 'Thông tin đăng ký không chính xác']);
         }
     }
+
 
     public function logoutAdmin()
     {
@@ -75,28 +91,23 @@ class AdminController extends Controller
         return view('Admin.user', ['users' => $users]);
     }
 
-    public function deleteUser($id)
+    public function destroyAcc($id)
     {
-        Messenger::where('fk_user_id', $id)->delete();
-        Blog::where('user_id', $id)->delete();
+        $user = Users::findOrFail($id);
+        $user->delete();
+        return redirect()->route('users')->with('success', 'Người dùng đã bị xóa thành công.');
+    }
 
-        $user = Users::find($id);
-        if ($user) {
-            if ($user->category == 3) {
-                Student::find($id)?->delete();
-                ThreadMessenger::where('user_student', $id)->delete();
-            } elseif ($user->category == 2) {
-                Teacher::find($id)?->delete();
-                ThreadMessenger::where('user_teacher', $id)->delete();
-            } else {
-                Company::find($id)?->delete();
-                ThreadMessenger::where('user_company', $id)->delete();
-            }
+    public function Logout_admin(Request $request)
+    {
+        // Đăng xuất admin
+        Auth::guard('adm')->logout();
 
-            $user->delete();
-            return redirect()->back()->with('success', 'Xóa người dùng thành công');
-        }
+        // Xóa tất cả session liên quan
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        return redirect()->back()->with('error', 'Không tìm thấy người dùng');
+        // Chuyển hướng về trang đăng nhập admin
+        return redirect()->route('login-admin')->with('success', 'Bạn đã đăng xuất thành công!');
     }
 }

@@ -54,9 +54,18 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="border p-4 rounded">
+                                    <script>
+                                        @if (session()->has('success'))
+                                            toastr.success("{{ session('success') }}");
+                                        @endif
+                                    
+                                        @if ($errors->has('message'))
+                                            toastr.error("{{ $errors->first('message') }}");
+                                        @endif
+                                    </script>
                                     <div class="text-center">
                                         <h3>Đăng Ký</h3>
-                                        <p>Bạn đã có tài khoản? <a href="./login">Đăng Nhập Tại Đây</a></p>
+                                        <p>Bạn đã có tài khoản? <a href="./admin-login">Đăng Nhập Tại Đây</a></p>
                                     </div>
                                     <div class="form-body">
                                         <!-- Form bắt đầu -->
@@ -94,7 +103,7 @@
                                             <div class="col-12">
                                                 <label class="form-label">Confirm Password</label>
                                                 <input id="txtPassword2" name="confirm_password" type="password" class="form-control @error('confirm_password') input-error @enderror" placeholder="Nhập lại mật khẩu">
-                                                @error('confirm_password')
+                                                @error('confirmed')
                                                 <span class="error-text">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -142,8 +151,8 @@
             toastr.success('{{ session('success') }}', 'Thành công', { timeOut: 5000 });
         @endif
 
-        @if (session('danger'))
-            toastr.error('{{ session('danger') }}', 'Thất bại', { timeOut: 5000 });
+        @if (session('error'))
+            toastr.error('{{ session('error') }}', 'Thất bại', { timeOut: 5000 });
         @endif
     </script>
 

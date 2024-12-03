@@ -16,6 +16,9 @@
     <link href="/assets_admin/css/app.css" rel="stylesheet">
     <link href="/assets_admin/css/icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 </head>
 
 <body class="bg-login">
@@ -27,12 +30,15 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="border p-4 rounded">
-                                    @if(Session::has('success'))
-                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            <strong>Thành công!</strong> {{ Session::get('success') }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                        </div>
-                                    @endif
+                                    <script>
+                                        @if (session()->has('success'))
+                                            toastr.success("{{ session('success') }}");
+                                        @endif
+                                    
+                                        @if ($errors->has('message'))
+                                            toastr.error("{{ $errors->first('message') }}");
+                                        @endif
+                                    </script>
 
                                     <div class="text-center">
                                         <h3 class="">Đăng Nhập</h3>
@@ -58,26 +64,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Lỗi từ session -->
-                                            @if(Session::has('error'))
-                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                    <strong>Lỗi!</strong> {{ Session::get('error') }}
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
-                                            @endif
-
-                                            <!-- Lỗi từ form validation -->
-                                            @if ($errors->any())
-                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                    <strong>Lỗi!</strong>
-                                                    <ul class="mb-0">
-                                                        @foreach ($errors->all() as $error)
-                                                            <li>{{ $error }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div>
-                                            @endif
+                                     
 
                                             <div class="col-12">
                                                 <div class="d-grid">

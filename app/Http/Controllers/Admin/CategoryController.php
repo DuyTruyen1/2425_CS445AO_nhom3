@@ -22,9 +22,14 @@ class CategoryController extends Controller
 
     public function postCategory(CategoryRequest $req)
     {
+        // Tạo mới danh mục
         $category = Category::create($req->all());
-        return response()->json(['success' => 'Thêm thành công sản phẩm']);
+
+        // Trả về redirect với thông báo thành công sử dụng Toastr
+        return redirect()->route('category') // Hoặc đường dẫn tới trang bạn muốn redirect
+            ->with('success', 'Thêm thành công sản phẩm');
     }
+
 
     public function editCategory($id)
     {
