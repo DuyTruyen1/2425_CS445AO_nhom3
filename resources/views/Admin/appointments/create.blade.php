@@ -1,13 +1,21 @@
 @extends('layout.main')
-
 @section('content')
 <div class="container mt-5">
-    <h2 class="mb-4">Create Appointment</h2>
+    <h2 class="mb-4">Tạo lịch hẹn</h2>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <form action="{{ route('admin.appointments.store') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" name="title" id="title" class="form-control" placeholder="Enter title" required>
+            <input type="text" name="title" id="title" class="form-control" placeholder="Enter title" >
         </div>
 
         <div class="mb-3">
@@ -17,17 +25,17 @@
 
         <div class="mb-3">
             <label for="start_time" class="form-label">Start Time</label>
-            <input type="datetime-local" name="start_time" id="start_time" class="form-control" required>
+            <input type="datetime-local" name="start_time" id="start_time" class="form-control" >
         </div>
 
         <div class="mb-3">
             <label for="end_time" class="form-label">End Time</label>
-            <input type="datetime-local" name="end_time" id="end_time" class="form-control" required>
+            <input type="datetime-local" name="end_time" id="end_time" class="form-control" >
         </div>
 
         <div class="mb-3">
             <label for="meeting_url" class="form-label">Meeting URL</label>
-            <input type="url" name="meeting_url" id="meeting_url" class="form-control" placeholder="Enter meeting URL">
+            <input type="text" name="meeting_url" id="meeting_url" class="form-control" placeholder="Enter meeting URL">
         </div>
 
         <div class="mb-3">

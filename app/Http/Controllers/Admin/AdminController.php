@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdminRegistrationRequest;
 use App\Http\Requests\AdminLoginRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Admin;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -90,6 +91,32 @@ class AdminController extends Controller
         $users = Users::all();
         return view('Admin.user', ['users' => $users]);
     }
+
+    public function edit($id)
+    {
+        $user = Users::findOrFail($id);
+        return view('Admin.edit', compact('user'));
+    }
+
+    public function destroy($id)
+    {
+        $user = Users::findOrFail($id);
+        $user->delete();
+        return redirect()->route('users')->with('success', 'Người dùng đã được xóa!');
+    }
+
+
+    public function updateUser(UpdateUserRequest $request, $id)
+    {
+        $user = Users::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password); // Không cần kiểm tra filled nữa vì mật khẩu là bắt buộc
+        $user->save();
+
+        return redirect()->route('users')->with('success', 'Thông tin người dùng đã được cập nhật thành công!');
+    }
+
 
     public function destroyAcc($id)
     {

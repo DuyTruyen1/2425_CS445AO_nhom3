@@ -43,7 +43,7 @@
                         <form action="{{ route('admin.appointments.destroy', $appointment->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xoá không ?')">Delete</button>
                         </form>
                     </td>
                 </tr>

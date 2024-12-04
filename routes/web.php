@@ -44,9 +44,15 @@ Route::post('registration-admin', [AdminController::class, 'postRegistrationAdmi
 Route::group(['prefix' => 'admin'], function () {
     Route::get('home', [AdminController::class, 'adminHome'])->name('admin-home');
     Route::get('users', [AdminController::class, 'user'])->name('users');
+    Route::get('/users/{id}/edit', [AdminController::class, 'edit'])->name('admin.userAcc.edit');
+    Route::put('/users/{id}', [AdminController::class, 'updateUser'])->name('admin.userAcc.update');
     Route::get('feedback', [FeedbackController::class, 'feedback'])->name('feedback');
     Route::get('numbers', [NumberController::class, 'numbers'])->name('numbers');
     Route::get('deleteUser', [AdminController::class, 'delete_user']);
+
+
+    Route::get('/blogs/edit/{id}', [BlogController::class, 'edit'])->name('admin.blogs.edit');
+    Route::put('/blogs/update/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
     Route::get('deleteBlog', [BlogController::class, 'getBlog'])->name('delete_blog');
     Route::post('deleteBlog', [BlogController::class, 'deleteBlog']);
     Route::delete('admin/user/{id}', [AdminController::class, 'destroyAcc'])->name('admin.userAcc.delete');
@@ -66,23 +72,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/delete-skill/{id}', [SkillController::class, 'deleteSkill']);
 
     Route::get('/jitsi-meet', [JitsiController::class, 'index'])->name('admin.jitsi-meet');
-
     Route::get('appointments', [AppointmentAdminController::class, 'index'])->name('admin.appointments.index');
-
     Route::get('appointments/create', [AppointmentAdminController::class, 'create'])->name('admin.appointments.create');
-
-    // Lưu cuộc hẹn vào cơ sở dữ liệu (Admin)
     Route::post('appointments', [AppointmentAdminController::class, 'store'])->name('admin.appointments.store');
-
-    // Hiển thị chi tiết một cuộc hẹn (Admin)
-
-    // Hiển thị form chỉnh sửa cuộc hẹn (Admin)
     Route::get('appointments/{appointment}/edit', [AppointmentAdminController::class, 'edit'])->name('admin.appointments.edit');
-
-    // Cập nhật cuộc hẹn (Admin)
     Route::put('appointments/{appointment}', [AppointmentAdminController::class, 'update'])->name('admin.appointments.update');
-
-    // Xóa cuộc hẹn (Admin)
     Route::delete('appointments/{appointment}', [AppointmentAdminController::class, 'destroy'])->name('admin.appointments.destroy');
 });
 

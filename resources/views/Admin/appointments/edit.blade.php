@@ -2,14 +2,23 @@
 @section('content')
 <div class="container">
   <h1 class="mt-4">Chỉnh sửa cuộc hẹn</h1>
-  
+  @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
   <form action="{{ route('admin.appointments.update', $appointment->id) }}" method="POST">
       @csrf
       @method('PUT')
       
       <div class="mb-3">
           <label for="title" class="form-label">Tiêu đề</label>
-          <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $appointment->title) }}" required>
+          <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $appointment->title) }}" >
       </div>
 
       <div class="mb-3">
@@ -19,12 +28,12 @@
 
       <div class="mb-3">
           <label for="start_time" class="form-label">Thời gian bắt đầu</label>
-          <input type="datetime-local" name="start_time" id="start_time" class="form-control" value="{{ old('start_time', $appointment->start_time) }}" required>
+          <input type="datetime-local" name="start_time" id="start_time" class="form-control" value="{{ old('start_time', $appointment->start_time) }}" >
       </div>
 
       <div class="mb-3">
           <label for="end_time" class="form-label">Thời gian kết thúc</label>
-          <input type="datetime-local" name="end_time" id="end_time" class="form-control" value="{{ old('end_time', $appointment->end_time) }}" required>
+          <input type="datetime-local" name="end_time" id="end_time" class="form-control" value="{{ old('end_time', $appointment->end_time) }}" >
       </div>
 
       <div class="mb-3">

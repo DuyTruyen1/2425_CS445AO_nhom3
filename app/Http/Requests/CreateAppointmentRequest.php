@@ -4,37 +4,35 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAppointmentRequest extends FormRequest
+class CreateAppointmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        // Trả về true nếu người dùng có quyền thực hiện request này
         return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'start_time' => 'required|date|after_or_equal:now',  // Thời gian bắt đầu phải là thời gian hiện tại hoặc sau
-            'end_time' => 'required|date|after:start_time',  // Thời gian kết thúc phải sau thời gian bắt đầu
+            'description' => 'required|string',
+            'start_time' => 'required|date|after_or_equal:now',
+            'end_time' => 'required|date|after:start_time',
             'meeting_url' => 'required|url|regex:/^(https?):\/\/[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+(:\d+)?(\/[^\s]*)?$/', // Đảm bảo URL hợp lệ
-            'teacher_id' => 'nullable|exists:teacher,id',
-            'company_id' => 'nullable|exists:company,id',
-            'student_id' => 'nullable|exists:students,id',
+            'teacher_id' => 'required|exists:teacher,id',
+            'company_id' => 'required|exists:company,id',
+            'student_id' => 'required|exists:students,id',
         ];
     }
+
 
     public function messages()
     {
@@ -42,7 +40,7 @@ class UpdateAppointmentRequest extends FormRequest
             'title.required' => 'Tiêu đề là bắt buộc.',
             'description.required' => 'Mô tả là bắt buộc.',
             'start_time.required' => 'Thời gian bắt đầu là bắt buộc.',
-            'start_time.after_or_equal' => 'Thời gian bắt đầu phải là thời gian hiện tại hoặc sau.',
+            'start_time.after_or_equal' => 'Thời gian bắt đầu phải là một ngày trong tương lai.',
             'end_time.required' => 'Thời gian kết thúc là bắt buộc.',
             'end_time.after' => 'Thời gian kết thúc phải sau thời gian bắt đầu.',
             'meeting_url.required' => 'URL cuộc họp là bắt buộc.',

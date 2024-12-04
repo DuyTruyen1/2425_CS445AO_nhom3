@@ -9,8 +9,9 @@ use App\Models\Category;
 use App\Models\Appointment;
 use App\Models\Teacher;
 use App\Models\Company;
-use App\Http\Requests\StoreAppointmentRequest;
+use App\Http\Requests\CreateAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
+use GuzzleHttp\Promise\Create;
 
 class AppointmentAdminController extends Controller
 {
@@ -25,7 +26,7 @@ class AppointmentAdminController extends Controller
         return view('admin.appointments.create', compact('teachers', 'companies', 'students', 'category'));
     }
 
-    public function store(StoreAppointmentRequest $request)
+    public function store(CreateAppointmentRequest $request)
     {
         // Lấy dữ liệu đã được xác thực từ StoreAppointmentRequest
         $validated = $request->validated();
@@ -43,7 +44,7 @@ class AppointmentAdminController extends Controller
         ]);
 
         // Chuyển hướng hoặc trả về thông báo
-        return redirect()->route('admin.appointments.index')->with('success', 'Appointment created successfully!');
+        return redirect()->route('admin.appointments.index')->with('success', 'Tạo cuộc hẹn thành công!');
     }
 
     // Hiển thị tất cả các cuộc hẹn
@@ -62,14 +63,14 @@ class AppointmentAdminController extends Controller
 
         // Kiểm tra nếu không tìm thấy cuộc hẹn
         if (!$appointment) {
-            return redirect()->route('admin.appointments.index')->with('error', 'Appointment not found.');
+            return redirect()->route('admin.appointments.index')->with('error', 'Cuộc hẹn không tồn tại.');
         }
 
         // Xóa cuộc hẹn
         $appointment->delete();
 
         // Chuyển hướng hoặc trả về thông báo
-        return redirect()->route('admin.appointments.index')->with('success', 'Appointment deleted successfully!');
+        return redirect()->route('admin.appointments.index')->with('success', 'Xoá cuộc hẹn thành công!');
     }
 
     public function edit($id)
@@ -102,6 +103,6 @@ class AppointmentAdminController extends Controller
             'student_id' => $validated['student_id'],
         ]);
 
-        return redirect()->route('admin.appointments.index')->with('success', 'Appointment updated successfully!');
+        return redirect()->route('admin.appointments.index')->with('success', 'Cập nhật cuộc hẹn thành công!');
     }
 }

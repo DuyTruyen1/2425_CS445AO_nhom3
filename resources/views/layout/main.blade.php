@@ -135,12 +135,8 @@
                     toastr.error("{{ $errors->first('message') }}");
                 @endif
             </script>
-            @yield('content')
-       
-
-            
-            
-        </div>
+            @yield('content')             
+   </div>
 
 
         

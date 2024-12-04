@@ -22,15 +22,22 @@ class SkillRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:Skill',
+            'name' => 'required|string|max:255|unique:skills,name', // Kiểm tra trường 'name' là bắt buộc và duy nhất trong bảng 'skills'
         ];
     }
 
+    /**
+     * Tùy chọn: Các thông báo lỗi tùy chỉnh.
+     *
+     * @return array
+     */
     public function messages()
     {
         return [
-            'name.required' => 'Không được trống',
-            'name.unique' => 'Tên đã tồn tại',
+            'name.required' => 'Tên kỹ năng là bắt buộc.',
+            'name.string' => 'Tên kỹ năng phải là một chuỗi ký tự.',
+            'name.max' => 'Tên kỹ năng không được vượt quá 255 ký tự.',
+            'name.unique' => 'Tên kỹ năng đã tồn tại.',
         ];
     }
 }

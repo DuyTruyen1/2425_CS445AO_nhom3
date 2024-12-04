@@ -38,12 +38,16 @@ class SkillController extends Controller
 
     public function deleteSkill($id)
     {
-        $skill = Skill::find($id);
+        try {
+            // Sử dụng findOrFail để tự động ném ngoại lệ nếu không tìm thấy bản ghi
+            $skill = Skill::findOrFail($id);
 
-        if ($skill) {
+            // Nếu tìm thấy, tiến hành xóa
             $skill->delete();
+
             return response()->json(['success' => 'Xóa thành công']);
-        } else {
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            // Xử lý nếu không tìm thấy kỹ năng
             return response()->json(['error' => 'Kỹ năng không tồn tại'], 404);
         }
     }
