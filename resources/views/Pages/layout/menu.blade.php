@@ -40,6 +40,10 @@
                 <div class="menu-item-icon icon-company"></div>
                 <div class="menu-item-text">List Job</div>
             </a>
+            <a class="menu-item" href="./Pages/Student/research-topics">
+                <div class="menu-item-icon icon-company"></div>
+                <div class="menu-item-text">Nghiên cứu</div>
+            </a>
         <?php } elseif(Auth::user()->category == '1'){ ?>
         <div class="dark-mode logo-area">
             <a id="logo" href="./Pages/Company/Home">
@@ -111,11 +115,16 @@
             <div class="icon-more icon-company"></div>
             <div class="menu-item-text">Sinh Viên</div>
             </a>
+            <a class="menu-item" href="./Pages/Teacher/research_topics/create">
+                <div class="icon-more icon-company"></div>
+                <div class="menu-item-text">Nghiên cứu</div>
+                </a>
             <?php }?>
             <a class="menu-item" href="./Pages/meetings">
                 <div class="menu-item-icon icon-help"></div>
                 <div class="menu-item-text">Cuộc họp</div>
             </a>
+            
             
             <a class="menu-item" href="./Pages/Setting">
                 <div class="menu-item-icon icon-setting"></div>

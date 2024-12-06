@@ -19,6 +19,8 @@ use App\Http\Controllers\JitsiController;
 use App\Http\Controllers\Users\ShowMeetingController;
 use App\Http\Controllers\Users\JobController;
 use App\Http\Controllers\Users\InterviewController;
+use App\Http\Controllers\Users\ResearchTopicController;
+use App\Http\Controllers\Users\ApplicationController;
 
 
 
@@ -122,11 +124,12 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
         Route::post('send-mes', [StudentController::class, 'send_Messenger']);
         Route::post('load-mes', [StudentController::class, 'load_Mes']);
 
-        // Danh sách công việc có thể ứng tuyển
         Route::get('jobs', [InterviewController::class, 'index'])->name('student.jobs.index');
 
-        // Ứng tuyển vào công việc
         Route::post('jobs/{jobId}/apply', [InterviewController::class, 'apply'])->name('student.jobs.apply');
+
+        Route::get('research-topics', [ApplicationController::class, 'index']);
+        Route::post('research-topics', [ApplicationController::class, 'store']);
     });
 
 
@@ -151,6 +154,17 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
         Route::get('messenger-student/{id}', [TeacherController::class, 'messenger'])->name('messenger-teacher');
         Route::post('send-mes', [TeacherController::class, 'send_Messenger']);
         Route::post('load-mes', [TeacherController::class, 'load_Mes']);
+
+        Route::get('research_topics/index', [ResearchTopicController::class, 'index'])->name('research_topics.index');
+        Route::get('research_topics/create', [ResearchTopicController::class, 'create'])->name('research_topics.create');
+        Route::post('research_topics', [ResearchTopicController::class, 'store'])->name('research_topics.store');
+        Route::get('teacher/research-topics/{id}/edit', [ResearchTopicController::class, 'edit'])->name('research-topics.edit');
+        Route::put('teacher/research-topics/{id}', [ResearchTopicController::class, 'update'])->name('research-topics.update');
+        Route::delete('teacher/research-topics/{id}', [ResearchTopicController::class, 'destroy'])->name('research-topics.destroy');
+
+        Route::get('research-topics', [ResearchTopicController::class, 'index'])->name('research-topics.index');
+        Route::post('applications', [ResearchTopicController::class, 'store'])->name('applications.store');
+        Route::put('applications/{application}/status', [ResearchTopicController::class, 'updateStatus'])->name('applications.updateStatus');
     });
 
 
