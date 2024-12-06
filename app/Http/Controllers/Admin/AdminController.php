@@ -111,7 +111,7 @@ class AdminController extends Controller
         $user = Users::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password); // Không cần kiểm tra filled nữa vì mật khẩu là bắt buộc
+        $user->password = bcrypt($request->password);
         $user->save();
 
         return redirect()->route('users')->with('success', 'Thông tin người dùng đã được cập nhật thành công!');

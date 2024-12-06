@@ -16,6 +16,7 @@ use App\Http\Requests\RequestRegistration;
 use App\Http\Requests\FeedbackRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -27,11 +28,9 @@ class UserController extends Controller
 
     public function post_login(LoginRequest $request)  // Sử dụng LoginRequest để tự động xác thực
     {
-        Auth::logout();  // Đăng xuất người dùng hiện tại
+        Auth::logout();
 
-        // Kiểm tra thông tin đăng nhập, chỉ sử dụng email và password từ request
         if (Auth::attempt($request->only('email', 'password'))) {
-            // Lấy thông tin người dùng vừa đăng nhập
             $user = Auth::user();
 
             // Định nghĩa các route điều hướng tùy thuộc vào category của người dùng
@@ -49,6 +48,48 @@ class UserController extends Controller
 
         return redirect()->back()->with('error', 'Email hoặc mật khẩu không chính xác!');
     }
+
+
+    public function showChangePasswordForm()
+    {
+        return view('Login.change_password');
+    }
+
+
+    public function resetPassword(Request $request)
+    {
+        // Kiểm tra mật khẩu cũ
+        if (!Hash::check($request->current_password, Auth::users()->password)) {
+            return back()->with('error', 'Mật khẩu hiện tại không đúng.');
+        }
+
+        $request->validate([
+            'new_password' => [
+                'required',
+                'confirmed',
+                'min:8', // Tối thiểu 8 ký tự
+                'regex:/[A-Z]/', // Ít nhất 1 ký tự in hoa
+                'regex:/[a-z]/', // Ít nhất 1 ký tự thường
+                'regex:/[0-9]/', // Ít nhất 1 số
+                'regex:/[@$!%*?&]/', // Ít nhất 1 ký tự đặc biệt
+            ],
+        ], [
+            'new_password.required' => 'Mật khẩu mới là bắt buộc.',
+            'new_password.confirmed' => 'Xác nhận mật khẩu mới không khớp.',
+            'new_password.min' => 'Mật khẩu mới phải có ít nhất 8 ký tự.',
+            'new_password.regex' => 'Mật khẩu mới phải có ít nhất 1 ký tự in hoa, 1 ký tự đặc biệt, và 1 chữ số.',
+        ]);
+
+        DB::table('user')
+            ->where('id', Auth::id()) // Chỉ định người dùng hiện tại
+            ->update([
+                'password' => Hash::make($request->new_password) // Mã hóa mật khẩu mới
+            ]);
+
+        return back()->with('success', 'Đổi mật khẩu thành công!');
+    }
+
+
 
 
 

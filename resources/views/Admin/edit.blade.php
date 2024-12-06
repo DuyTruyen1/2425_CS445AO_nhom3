@@ -50,7 +50,6 @@
                             <td><label for="password" class="fw-bold">Mật khẩu mới:</label></td>
                             <td>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Nhập mật khẩu mới">
-                                <small class="form-text text-muted">Để trống nếu không muốn thay đổi mật khẩu.</small>
                             </td>
                         </tr>
                     </tbody>

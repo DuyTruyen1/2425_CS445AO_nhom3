@@ -42,6 +42,11 @@
 												{{ Session::get('success') }}
 										</div>
 										@endif
+										@if(Session::has('status'))
+										<div class="alert alert-success">
+												{{ Session::get('status') }}
+										</div>
+										@endif
 									<div class="text-center">
 										<h3 class="">Đăng Nhập</h3>
 										<p>Bạn chưa có tài khoản? <a href="./registration">Đăng Ký Tại Đây</a></p>
@@ -91,6 +96,9 @@
 														<div class="d-grid">
 																<button type="submit" class="btn btn-warning"><i class="bx bxs-lock-open"></i>Đăng Nhập</button>
 														</div>
+														<div class="col-12 text-end">
+															<a href="/password/email" class="text-decoration-none">Quên mật khẩu?</a>
+													</div>
 												</div>
 											</form>
 									</div>

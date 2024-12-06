@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\NumberController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\AppointmentAdminController;
 use App\Http\Controllers\Users\UserController;
+use App\Http\Controllers\Users\ForgotPassword;
 use App\Http\Controllers\Users\CompanyController;
 use App\Http\Controllers\Users\StudentController;
 use App\Http\Controllers\Users\TeacherController;
@@ -80,6 +81,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::delete('appointments/{appointment}', [AppointmentAdminController::class, 'destroy'])->name('admin.appointments.destroy');
 });
 
+Route::get('password/email', [ForgotPassword::class, 'showResetForm'])->name('password.reset'); // Hiển thị form yêu cầu quên mật khẩu
+Route::post('password/email', [ForgotPassword::class, 'sendResetLinkEmail'])->name('password.email'); // Xử lý yêu cầu quên mật khẩu và gửi mã OTP
+
+Route::get('password/reset', [ForgotPassword::class, 'showNewPasswordForm'])->name('password.change'); // Hiển thị form nhập mã OTP và mật khẩu mới
+Route::post('password/reset', [ForgotPassword::class, 'reset'])->name('password.update'); // Xử lý cập nhật mật khẩu sau khi người dùng nhập mã OTP và mật khẩu mới
+
+
 //users
 Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
     Route::get('Setting', [UserController::class, 'updatePassword'])->name('user.update.password');
@@ -87,6 +95,7 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
     Route::get('Help', [UserController::class, 'getHelp'])->name('get-help');
     Route::post('Help', [UserController::class, 'postHelp']);
     Route::get('/meetings', [ShowMeetingController::class, 'showMeetings']);
+
     // Route::get('/meetings', [ShowMeetingController::class, 'showMeetings']);
 
 

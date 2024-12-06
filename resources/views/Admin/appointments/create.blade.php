@@ -14,27 +14,27 @@
     <form action="{{ route('admin.appointments.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
+            <label for="title" class="form-label">Tiêu Đề</label>
             <input type="text" name="title" id="title" class="form-control" placeholder="Enter title" >
         </div>
 
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
+            <label for="description" class="form-label">Mô Tả</label>
             <textarea name="description" id="description" class="form-control" rows="4" placeholder="Enter description"></textarea>
         </div>
 
         <div class="mb-3">
-            <label for="start_time" class="form-label">Start Time</label>
+            <label for="start_time" class="form-label">Thời Gian Bắt Đầu</label>
             <input type="datetime-local" name="start_time" id="start_time" class="form-control" >
         </div>
 
         <div class="mb-3">
-            <label for="end_time" class="form-label">End Time</label>
+            <label for="end_time" class="form-label">Thời Gian Kết Thúc</label>
             <input type="datetime-local" name="end_time" id="end_time" class="form-control" >
         </div>
 
         <div class="mb-3">
-            <label for="meeting_url" class="form-label">Meeting URL</label>
+            <label for="meeting_url" class="form-label">Đường dẫn</label>
             <input type="text" name="meeting_url" id="meeting_url" class="form-control" placeholder="Enter meeting URL">
         </div>
 
@@ -70,7 +70,7 @@
         
 
         <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-warning">Create Appointment</button>
+            <button type="submit" class="btn btn-warning">Tạo cuộc họp</button>
             <a href="{{ route('admin.appointments.index') }}" class="btn btn-secondary">Cancel</a>
         </div>
     </form>

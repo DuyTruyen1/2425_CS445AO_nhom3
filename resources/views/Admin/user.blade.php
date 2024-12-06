@@ -21,7 +21,7 @@
                     <td>{{ $user->email }}</td>
                     <td>
                         <!-- Nút cập nhật -->
-                        <a href="{{ route('admin.userAcc.edit', $user->id) }}" class="btn btn-warning btn-sm">Cập nhật</a>
+                        <a href="{{ route('admin.userAcc.edit', $user->id) }}" class="btn btn-warning btn-sm">Chỉnh sửa</a>
 
                         <!-- Nút xóa -->
                         <form method="POST" action="{{ route('admin.userAcc.delete', $user->id) }}" class="d-inline">
