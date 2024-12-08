@@ -18,6 +18,8 @@ use App\Models\ThreadMessenger;
 use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Job;
+use App\Models\ResearchTopic;
 
 class AdminController extends Controller
 {
@@ -130,11 +132,21 @@ class AdminController extends Controller
         // Đăng xuất admin
         Auth::guard('adm')->logout();
 
-        // Xóa tất cả session liên quan
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        // Chuyển hướng về trang đăng nhập admin
         return redirect()->route('login-admin')->with('success', 'Bạn đã đăng xuất thành công!');
+    }
+
+    public function job()
+    {
+        $jobs = Job::orderBy('id', 'asc')->get();
+        return view('admin.jobs', compact('jobs'));
+    }
+
+    public function research()
+    {
+        $researchTopics = ResearchTopic::orderBy('id', 'asc')->get();
+        return view('admin.research', compact('researchTopics'));
     }
 }

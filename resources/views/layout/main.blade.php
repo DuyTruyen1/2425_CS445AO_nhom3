@@ -56,7 +56,7 @@
                     </div>
                 </li>
                 <li class="active">
-                <a href="{{route('admin-home')}}"> <i class="fa fa-home" aria-hidden="true"></i><span class="nav-label">Home</span></a>
+                <a href="{{route('admin-home')}}"> <i class="fa fa-home" aria-hidden="true"></i><span class="nav-label">Trang chủ</span></a>
                 </li>
                 <li>
                     <a href="{{route('numbers')}}"><i class="fa fa-book" aria-hidden="true"></i><span class="nav-label">Tổng quan</span></a>
@@ -70,22 +70,28 @@
                 
 
                 <li>
-                <a href="{{route('delete_blog')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Quản lý blog</span></a>
+                <a href="{{route('delete_blog')}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span class="nav-label">Quản lý blog</span></a>
                 </li>
                  <li>
-                 <a href="{{route('feedback')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Quản lý phản hồi</span></a>
+                 <a href="{{route('feedback')}}"><i class="fa fa-comments" aria-hidden="true"></i> <span class="nav-label">Quản lý phản hồi</span></a>
                 </li>
                 <li>
-                    <a href="{{route('skill')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Quản lý kỹ năng</span></a>
+                    <a href="{{route('skill')}}"><i class="fa fa-cogs" aria-hidden="true"></i> <span class="nav-label">Quản lý kỹ năng</span></a>
                 </li>
                 <li>
-                    <a href="{{route('admin.appointments.create')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Quản lý cuộc họp</span></a>
+                    <a href="{{route('job')}}"><i class="fa fa-briefcase" aria-hidden="true"></i> <span class="nav-label">Quản lý công việc</span></a>
                 </li>
                 <li>
-                    <a href="{{route('admin.appointments.index')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Thông tin cuộc họp</span></a>
+                    <a href="{{route('rs')}}"><i class="fa fa-flask" aria-hidden="true"></i> <span class="nav-label">Quản lý nghiên cứu</span></a>
                 </li>
                 <li>
-                    <a href="{{route('admin.jitsi-meet')}}"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Tạo cuộc họp</span></a>
+                    <a href="{{route('admin.appointments.create')}}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> <span class="nav-label">Tạo lịch hẹn</span></a>
+                </li>
+                <li>
+                    <a href="{{route('admin.appointments.index')}}"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="nav-label">Thông tin cuộc họp</span></a>
+                </li>
+                <li>
+                    <a href="{{route('admin.jitsi-meet')}}"><i class="fa fa-video-camera" aria-hidden="true"></i> <span class="nav-label">Tạo cuộc họp</span></a>
                 </li>
             </ul>
 

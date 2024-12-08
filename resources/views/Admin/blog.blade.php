@@ -40,9 +40,6 @@
                         <input type="hidden" class="form-control" value="{{ $ca->id_blog }}" name="id">
                         <button type="submit" class="btn btn-danger">Xóa</button>
                     </form>
-
-                    <!-- Thêm nút Cập nhật để chuyển hướng tới trang chỉnh sửa -->
-                    <a href="{{ route('admin.blogs.edit', $ca->id_blog) }}" class="btn btn-primary mt-2">Cập nhật</a>
                 </td>
             </tr>
         @endforeach

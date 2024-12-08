@@ -11,9 +11,6 @@ use App\Models\ThreadMessenger;
 use App\Models\Category;
 use App\Models\Blog;
 use App\Models\FK_Skill;
-use App\Models\Appointment;
-use App\Models\Teacher;
-use App\Models\Company;
 use App\Models\Skill;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -105,6 +102,44 @@ class StudentController extends Controller
         $blog = blog::find($id_blog);
 
         return view('Pages.Student.updateBlog', ['blog' => $blog, 'category' => $category, 'BL_St' => $BL_St]);
+    }
+
+    public function updateBlog(PostBlogRequest $request, $id_blog)
+    {
+        $category = category::all()[2];
+        $blog = blog::find($id_blog);
+
+        $blog->title = $request->Tieude;
+        $blog->content = $request->Noidung;
+        $blog->description = $request->Tomtat;
+
+        if ($request->hasFile('Hinh')) {
+            $file = $request->file('Hinh');
+            $duoi = $file->getClientOriginalExtension();
+            if ($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg') {
+                // Xử lý lỗi nếu cần
+            }
+            $name = $file->getClientOriginalName();
+            $Hinh = Str::random(4) . '_' . $name;
+            while (file_exists('upload/blog/' . $Hinh)) {
+                $Hinh = Str::random(4) . "_" . $name;
+            }
+            $file->move('upload/blog', $Hinh);
+            if ($blog->Hinh != NULL)
+                unlink('upload/blog/' . $blog->Hinh);
+
+            $blog->Hinh = $Hinh;
+        }
+
+        $blog->save();
+
+        $id = Auth::user()->id;
+        $BL_St = DB::table('blog')
+            ->where('id', $id)
+            ->paginate(4);
+
+        return view('Pages.Student.Blog', ['category' => $category, 'BL_St' => $BL_St])
+            ->with('success', 'Bạn cập nhật thành công');
     }
 
     public function delBlog($id_blog)
@@ -542,7 +577,7 @@ class StudentController extends Controller
 
     public function getShare($id)
     {
-        $category = category::all()[9];
+        $category = category::all()[2];
         $user = Users::find($id);
         $user_blog = blog::where('id', $id);
 
@@ -559,7 +594,7 @@ class StudentController extends Controller
 
     public function getShare2($id_blog)
     {
-        $category = category::all()[9];
+        $category = category::all()[2];
 
         $blog = blog::find($id_blog);
 

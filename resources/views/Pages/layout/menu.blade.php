@@ -41,7 +41,7 @@
                 <div class="menu-item-text">List Job</div>
             </a>
             <a class="menu-item" href="./Pages/Student/research-topics">
-                <div class="menu-item-icon icon-company"></div>
+                <div class="menu-item-icon icon-teacher"></div>
                 <div class="menu-item-text">Nghiên cứu</div>
             </a>
         <?php } elseif(Auth::user()->category == '1'){ ?>

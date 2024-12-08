@@ -52,10 +52,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('feedback', [FeedbackController::class, 'feedback'])->name('feedback');
     Route::get('numbers', [NumberController::class, 'numbers'])->name('numbers');
     Route::get('deleteUser', [AdminController::class, 'delete_user']);
+    Route::get('job', [AdminController::class, 'job'])->name('job');
+    Route::get('research', [AdminController::class, 'research'])->name('rs');
 
 
-    Route::get('/blogs/edit/{id}', [BlogController::class, 'edit'])->name('admin.blogs.edit');
-    Route::put('/blogs/update/{id}', [BlogController::class, 'update'])->name('admin.blogs.update');
     Route::get('deleteBlog', [BlogController::class, 'getBlog'])->name('delete_blog');
     Route::post('deleteBlog', [BlogController::class, 'deleteBlog']);
     Route::delete('admin/user/{id}', [AdminController::class, 'destroyAcc'])->name('admin.userAcc.delete');
