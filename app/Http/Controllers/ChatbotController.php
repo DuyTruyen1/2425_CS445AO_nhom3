@@ -22,7 +22,7 @@ class ChatbotController extends Controller
     {
         $text = $request->input('input');
 
-        $client = new Client('AIzaSyCXOks5tpBn7jzY-2PbKF_GKTIvKeI2I6c');
+        $client = new Client('');
 
         $response = $client->geminiPro()->generateContent(
             new TextPart($text)
