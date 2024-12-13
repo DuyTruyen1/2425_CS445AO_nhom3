@@ -20,12 +20,16 @@
                 <span class="menu-item-icon icon-board"></span>
                 <span class="menu-item-text">Tổng quan</span>
             </a>
+            <a class="menu-item" href="./Pages/Student/chat">
+                <span class="menu-item-icon icon-board"></span>
+                <span class="menu-item-text">Chat với AI</span>
+            </a>
             <a class="menu-item" href="./Pages/Student/Profile/{{Auth::user()->id}}">
                 <div class="menu-item-icon icon-profile"></div>
                 <div class="menu-item-text">Hồ Sơ</div>
             </a>
             <a class="menu-item" href="./Pages/Student/Blog">
-                <div class="icon-more icon-blog"></div>
+                <div class="menu-item-icon icon-help"></div>
                 <div class="menu-item-text">Blog Cá Nhân</div>
             </a>
                 <a class="menu-item" href="./Pages/Student/DS1">
@@ -38,7 +42,7 @@
             </a>
             <a class="menu-item" href="./Pages/Student/jobs">
                 <div class="menu-item-icon icon-company"></div>
-                <div class="menu-item-text">List Job</div>
+                <div class="menu-item-text">Công Việc</div>
             </a>
             <a class="menu-item" href="./Pages/Student/research-topics">
                 <div class="menu-item-icon icon-teacher"></div>
@@ -64,6 +68,7 @@
                 <div class="menu-item-icon icon-profile"></div>
                 <div class="menu-item-text">Hồ Sơ</div>
             </a>
+
             <a class="menu-item" href="./Pages/Company/Blog">
                 <div class="icon-more icon-blog"></div>
                 <div class="menu-item-text">Blog Cá Nhân</div>
@@ -79,7 +84,7 @@
             </a>
             <a class="menu-item" href="./Pages/Company/jobs">
                 <div class="menu-item-icon icon-teacher"></div>
-                <div class="menu-item-text">Tạo Jobs</div>
+                <div class="menu-item-text">Tạo Công Việc</div>
             </a>
             </a>
         <?php } elseif(Auth::user()->category == '2'){ ?>

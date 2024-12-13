@@ -22,7 +22,7 @@ class ResetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',  // Kiểm tra email hợp lệ
+            // 'email' => 'required|email',  // Kiểm tra email hợp lệ
             'reset_code' => 'required|exists:password_resets,reset_code',  // Kiểm tra mã OTP
             'password' => [
                 'required',
@@ -38,8 +38,8 @@ class ResetPasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Email là bắt buộc.',
-            'email.email' => 'Địa chỉ email không hợp lệ.',
+            // 'email.required' => 'Email là bắt buộc.',
+            // 'email.email' => 'Địa chỉ email không hợp lệ.',
             'reset_code.required' => 'Mã OTP là bắt buộc.',
             'reset_code.exists' => 'Mã OTP không hợp lệ.',
             'password.required' => 'Mật khẩu là bắt buộc.',

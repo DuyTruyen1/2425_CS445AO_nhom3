@@ -542,7 +542,7 @@ class StudentController extends Controller
                     'category' => $category,
                     'skill' => $skill,
                     'skillcheck' => $kcheck,
-                    'success' => 'Bạn cập nhật thông tin sinh viên thành công!'
+                    'success' => 'Cập nhật thông tin sinh viên thành công!'
                 ]);
         }
     }

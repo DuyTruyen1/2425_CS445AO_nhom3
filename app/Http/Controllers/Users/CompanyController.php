@@ -551,7 +551,7 @@ class CompanyController extends Controller
 
     public function getShare($id)
     {
-        $category = category::all()[9];
+        $category = category::all()[2];
         $user = Users::find($id);
         $user_blog = blog::where('id', $id);
 
@@ -568,7 +568,7 @@ class CompanyController extends Controller
 
     public function getShare2($id_blog)
     {
-        $category = category::all()[9];
+        $category = category::all()[2];
 
         $blog = blog::find($id_blog);
 

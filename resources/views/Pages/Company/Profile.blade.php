@@ -52,27 +52,29 @@
                 <div class="card-body dark-mode bg-black">
                         <label for="offer">Yêu cầu về kỹ năng</label>
                         <table>
-                    @if($skillcheck)
-                        @foreach($skill as $ski)
-                            @if(in_array($ski->name,$skillcheck))
-                        <tr onclick="chon(this)">
-                            <th><input type="checkbox" checked name="skill_id[]" value="{{$ski->id}}"></th>
-                            <th>{{$ski->name}}</th>
-                        </tr>
-                            @else
-                            <tr onclick="chon(this)">
-                            <th><input type="checkbox" name="skill_id[]" value="{{$ski->id}}"></th>
-                            <th>{{$ski->name}}</th>
-                        </tr>
-                            @endif
-                        @endforeach
-                    @else
-                    @foreach($skill as $ski)
-                    <tr onclick="chon(this)">
-                            <th><input type="checkbox" name="skill_id[]" value="{{$ski->id}}"></th>
-                            <th>{{$ski->name}}</th>
+                            @if($skillcheck)
+                            @foreach($skill as $ski)
+                                <tr onclick="chon(this)">
+                                    <th>
+                                        <input type="checkbox" 
+                                               name="skill_id[]" 
+                                               value="{{ $ski->id }}" 
+                                               {{ in_array($ski->name, $skillcheck) ? 'checked' : '' }}>
+                                    </th>
+                                    <th>{{ $ski->name }}</th>
+                                </tr>
                             @endforeach
-                    @endif
+                        @else
+                            @foreach($skill as $ski)
+                                <tr onclick="chon(this)">
+                                    <th>
+                                        <input type="checkbox" name="skill_id[]" value="{{ $ski->id }}">
+                                    </th>
+                                    <th>{{ $ski->name }}</th>
+                                </tr>
+                            @endforeach
+                        @endif
+                        
                     </table>
                         <!-- <textarea  name="offer" value=""class="form-control dark-mode" rows="5" id="txtOffer"> </textarea> -->
                         <label for="numbers">Số lượng</label>
@@ -99,10 +101,14 @@
 <script>
      // Highlight selected row
      function chon(row) {
-        row.classList.toggle('table-active');
-        const checkbox = row.querySelector('input[type="checkbox"]');
-        checkbox.checked = !checkbox.checked;
+    if (event.target.type === 'checkbox') {
+        return; // Không thực thi gì nếu nhấn trực tiếp vào checkbox
     }
+    // Logic khác khi nhấp vào hàng
+    const checkbox = row.querySelector('input[type="checkbox"]');
+    checkbox.checked = !checkbox.checked;
+}
+
 
     // Auto-update avatar preview
     document.querySelector('input[name="Hinh"]').addEventListener('change', function (event) {

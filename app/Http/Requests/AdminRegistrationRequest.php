@@ -34,7 +34,7 @@ class AdminRegistrationRequest extends FormRequest
                 'min:8', // Ít nhất 8 ký tự
                 'regex:/[A-Z]/', // Ít nhất 1 ký tự in hoa
                 'regex:/[!@#$%^&*(),.?":{}|<>]/', // Ít nhất 1 ký tự đặc biệt
-                'confirmed', // Kiểm tra xác nhận mật khẩu
+                // 'confirmed', // Kiểm tra xác nhận mật khẩu
 
             ],
         ];
@@ -50,7 +50,7 @@ class AdminRegistrationRequest extends FormRequest
             'password.required' => 'Mật khẩu là bắt buộc.',
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
             'password.regex' => 'Mật khẩu phải chứa ít nhất 1 ký tự in hoa và 1 ký tự đặc biệt.',
-            'password.confirmed' => 'Mật khẩu xác nhận không khớp.', // Thêm thông báo lỗi khi mật khẩu xác nhận không khớp
+            // 'password.confirmed' => 'Mật khẩu xác nhận không khớp.', // Thêm thông báo lỗi khi mật khẩu xác nhận không khớp
         ];
     }
 }

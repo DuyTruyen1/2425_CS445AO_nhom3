@@ -50,10 +50,10 @@ class ForgotPassword extends Controller
 
     public function showNewPasswordForm()
     {
-        // Kiểm tra xem có mã reset trong session không
-        if (!session::has('reset_code') || !session::has('reset_email')) {
-            return redirect()->route('password.request')->withErrors(['email' => 'Mã reset không hợp lệ.']);
-        }
+        // // Kiểm tra xem có mã reset trong session không
+        // if (!session::has('reset_code') || !session::has('reset_email')) {
+        //     return redirect()->route('password.reset')->withErrors(['email' => 'Mã reset không hợp lệ.']);
+        // }
 
         // Lấy email từ session
         $email = session::get('reset_email');

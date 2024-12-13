@@ -22,7 +22,7 @@ class SkillRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255|unique:skills,name', // Kiểm tra trường 'name' là bắt buộc và duy nhất trong bảng 'skills'
+            'name' => 'required|string|max:255|unique:skill,name', // Kiểm tra trường 'name' là bắt buộc và duy nhất trong bảng 'skills'
         ];
     }
 

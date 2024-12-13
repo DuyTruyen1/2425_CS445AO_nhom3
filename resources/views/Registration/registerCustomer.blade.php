@@ -75,7 +75,7 @@
                                             <!-- Email -->
                                             <div class="col-12">
                                                 <label class="form-label">Email</label>
-                                                <input name="email" type="email" id="txtEmail" value="{{ old('email') }}" class="form-control @error('email') input-error @enderror" placeholder="example@user.com">
+                                                <input name="email" type="text" id="txtEmail" value="{{ old('email') }}" class="form-control @error('email') input-error @enderror" placeholder="example@user.com">
                                                 @error('email')
                                                 <span class="error-text">{{ $message }}</span>
                                                 @enderror

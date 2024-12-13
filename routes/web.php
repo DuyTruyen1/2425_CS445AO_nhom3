@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -21,19 +22,14 @@ use App\Http\Controllers\Users\JobController;
 use App\Http\Controllers\Users\InterviewController;
 use App\Http\Controllers\Users\ResearchTopicController;
 use App\Http\Controllers\Users\ApplicationController;
-
-
-
-use App\Models\Blog;
-use App\Models\Category;
-use App\Models\Feedback;
-use App\Models\Interview;
-use App\Models\Skill;
+use App\Http\Controllers\ChatbotController;
 
 Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/chat', [ChatbotController::class, 'index']);
+Route::post('/send', [ChatbotController::class, 'sendChat']);
 
 
 Route::get('admin-login', [AdminController::class, 'loginAdmin'])->name('login-admin');
@@ -56,6 +52,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('research', [AdminController::class, 'research'])->name('rs');
 
 
+
     Route::get('deleteBlog', [BlogController::class, 'getBlog'])->name('delete_blog');
     Route::post('deleteBlog', [BlogController::class, 'deleteBlog']);
     Route::delete('admin/user/{id}', [AdminController::class, 'destroyAcc'])->name('admin.userAcc.delete');
@@ -67,12 +64,12 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('ajax_edit_category/{id}', [CategoryController::class, 'postEditCategory']);
     Route::get('delete_category/{id}', [CategoryController::class, 'deleteCategory'])->name('delete_category');
 
-    //Skill
-    Route::get('skill', [SkillController::class, 'skill'])->name('skill');
-    Route::post('ajax_add_skill', [SkillController::class, 'postSkill']);
-    Route::get('edit_skill/{id}', [SkillController::class, 'editSkill'])->name('edit_skill');
-    Route::post('ajax_edit_skill/{id}', [SkillController::class, 'postEditSkill']);
-    Route::get('/delete-skill/{id}', [SkillController::class, 'deleteSkill']);
+
+    Route::get('/skills', [SkillController::class, 'skill'])->name('skills');
+    Route::post('/skills', [SkillController::class, 'postSkill'])->name('skills.add');
+    Route::get('/skills/edit/{id}', [SkillController::class, 'editSkill'])->name('skills.edit');
+    Route::put('/skills/edit/{id}', [SkillController::class, 'postEditSkill'])->name('skills.update');
+    Route::delete('/skills/delete/{id}', [SkillController::class, 'deleteSkill'])->name('skills.delete');
 
     Route::get('/jitsi-meet', [JitsiController::class, 'index'])->name('admin.jitsi-meet');
     Route::get('appointments', [AppointmentAdminController::class, 'index'])->name('admin.appointments.index');
@@ -86,8 +83,8 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('password/email', [ForgotPassword::class, 'showResetForm'])->name('password.reset'); // Hiển thị form yêu cầu quên mật khẩu
 Route::post('password/email', [ForgotPassword::class, 'sendResetLinkEmail'])->name('password.email'); // Xử lý yêu cầu quên mật khẩu và gửi mã OTP
 
-Route::get('password/reset', [ForgotPassword::class, 'showNewPasswordForm'])->name('password.change'); // Hiển thị form nhập mã OTP và mật khẩu mới
-Route::post('password/reset', [ForgotPassword::class, 'reset'])->name('password.update'); // Xử lý cập nhật mật khẩu sau khi người dùng nhập mã OTP và mật khẩu mới
+Route::get('password/reset', [ForgotPassword::class, 'showNewPasswordForm'])->name('password.change');
+Route::post('password/reset', [ForgotPassword::class, 'reset'])->name('password.update');
 
 
 //users
@@ -97,19 +94,19 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
     Route::get('Help', [UserController::class, 'getHelp'])->name('get-help');
     Route::post('Help', [UserController::class, 'postHelp']);
     Route::get('/meetings', [ShowMeetingController::class, 'showMeetings']);
-
-    // Route::get('/meetings', [ShowMeetingController::class, 'showMeetings']);
-
+    Route::get('/user/chats', [UserController::class, 'chats'])->name('user.chats');
 
 
     Route::group(['prefix' => 'Student'], function () {
         Route::get('Home', [StudentController::class, 'getHome'])->name('student-home');
-
         Route::get('Blog', [StudentController::class, 'getBlog']);
         Route::post('Blog', [StudentController::class, 'postBlog']);
         Route::post('updateBlog/{id_blog}', [StudentController::class, 'updateBlog']);
         Route::get('getUpdateBlog/{id_blog}', [StudentController::class, 'getUpdateBlog']);
         Route::get('delBlog/{id_blog}', [StudentController::class, 'delBlog']);
+
+        Route::get('/chat', [ChatbotController::class, 'index']);
+        Route::post('/send', [ChatbotController::class, 'sendChat']);
 
         Route::get('DS1', [StudentController::class, 'getDS1']);
         Route::get('DS2', [StudentController::class, 'getDS2']);
@@ -135,7 +132,6 @@ Route::group(['prefix' => 'Pages', 'middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'Teacher'], function () {
         Route::get('Home', [TeacherController::class, 'getHome'])->name('teacher-home');
-
         Route::get('Blog', [TeacherController::class, 'getBlog']);
         Route::post('Blog', [TeacherController::class, 'postBlog']);
         Route::post('updateBlog/{id_blog}', [TeacherController::class, 'updateBlog']);

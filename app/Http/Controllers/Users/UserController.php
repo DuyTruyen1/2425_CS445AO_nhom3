@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Users;
+use App\Models\Admin;
 use App\Models\student;
 use App\Models\teacher;
 use App\Models\company;
@@ -25,13 +26,46 @@ class UserController extends Controller
         return view('Login.loginCustomer');
     }
 
+    public function chats()
+    {
+        $userId = session('LoggedUserInfo');
+        $LoggedUserInfo = Users::find($userId);
 
-    public function post_login(LoginRequest $request)  // Sử dụng LoginRequest để tự động xác thực
+        if (!$LoggedUserInfo) {
+            return redirect('user/login')->with('fail', 'You must be logged in to access the dashboard');
+        }
+
+        // Kiểm tra session của Admin
+        $adminId = session('LoggedAdminInfo');
+        $LoggedAdminInfo = Admin::find($adminId);
+
+        if (!$LoggedAdminInfo) {
+            return redirect('admin/login')->with('fail', 'You must be logged in to access the admin dashboard');
+        }
+
+        $admins = Admin::all();
+        $category = category::all()[7];
+
+        return view('Pages.chats', [
+            'LoggedUserInfo' => $LoggedUserInfo,
+            'LoggedAdminInfo' => $LoggedAdminInfo,  // Pass the admin info to the view
+            'admins' => $admins,
+            'category'  => $category
+            // Pass only admins to the view
+        ]);
+    }
+
+
+
+    public function post_login(LoginRequest $request) // Sử dụng LoginRequest để tự động xác thực
     {
         Auth::logout();
 
+        // Xác thực người dùng với email và password
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
+
+            session(['LoggedUserInfo' => $user->id]);  // Lưu ID người dùng vào session
 
             // Định nghĩa các route điều hướng tùy thuộc vào category của người dùng
             $routes = [
@@ -46,8 +80,10 @@ class UserController extends Controller
             }
         }
 
+        // Nếu đăng nhập không thành công
         return redirect()->back()->with('error', 'Email hoặc mật khẩu không chính xác!');
     }
+
 
 
     public function showChangePasswordForm()

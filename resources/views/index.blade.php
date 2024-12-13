@@ -64,7 +64,7 @@
 
         <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: url(assetHome/img/intro-carousel/1 .jpg)">
+          <div class="carousel-item active" style="background-image: url(assetHome/img/intro-carousel/1.jpg)">
             <div class="carousel-container">
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Đại học Duy Tân</h2>
@@ -244,14 +244,14 @@
   <script src="assetHome/vendor/aos/aos.js"></script>
 
   <script src="assetHome/js/main.js"></script>
-  {{-- <script>
-    var botmanWidget = {
-aboutText: 'Write Something',
-introMessage: "✋ Hi! I'm form eimpact.net"
-};
-</script> --}}
 
-<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="Profile"
+  agent-id="407acc8c-425d-4692-83d8-0fc8e7cf19b7"
+  language-code="en"
+></df-messenger>
 </body>
 
 </html>

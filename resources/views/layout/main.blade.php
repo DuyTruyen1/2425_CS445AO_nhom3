@@ -76,7 +76,7 @@
                  <a href="{{route('feedback')}}"><i class="fa fa-comments" aria-hidden="true"></i> <span class="nav-label">Quản lý phản hồi</span></a>
                 </li>
                 <li>
-                    <a href="{{route('skill')}}"><i class="fa fa-cogs" aria-hidden="true"></i> <span class="nav-label">Quản lý kỹ năng</span></a>
+                    <a href="{{route('skills')}}"><i class="fa fa-cogs" aria-hidden="true"></i> <span class="nav-label">Quản lý kỹ năng</span></a>
                 </li>
                 <li>
                     <a href="{{route('job')}}"><i class="fa fa-briefcase" aria-hidden="true"></i> <span class="nav-label">Quản lý công việc</span></a>
