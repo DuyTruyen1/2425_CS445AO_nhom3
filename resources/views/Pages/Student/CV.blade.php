@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-        <a href="./Pages/Student/Share/{{$user->id}}"><button type="submit" class="btn btn-primary dark-mode" >Blog cá nhân</button></a>
+        <a href="./Pages/Student/Share/{{$user->id}}"><button type="submit" class="btn btn-warning dark-mode" >Blog cá nhân</button></a>
 
         <div class="row dark-mode">
             <div class="col-md-6 dark-mode">

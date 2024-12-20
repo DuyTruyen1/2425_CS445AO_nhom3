@@ -25,7 +25,7 @@
 
             <div class="form-group row">
             <div class="col-md-12">
-                <input type="email" class="form-control dark-mode" name="email" placeholder="Email">
+                <input type="text" class="form-control dark-mode" name="email" placeholder="Email">
                     @error('email')
                     <div class="error-text">{{ $message }}</div>
                      @enderror

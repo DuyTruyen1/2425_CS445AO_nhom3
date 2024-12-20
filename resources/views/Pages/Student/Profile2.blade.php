@@ -92,14 +92,15 @@
                     <div class="form-group">
                         <label for="year-of-course">Khoá</label>
                         <select name="yearOfCourse" class="form-control dark-mode" id="sel1">
-                            <option>QH-2014</option>
-                            <option>QH-2015</option>
-                            <option>QH-2016</option>
-                            <option>QH-2017</option>
-                            <option>QH-2018</option>
-                            <option>QH-2019</option>
-                            <option>QH-2020</option>
-                            <option>QH-2021</option>
+                            <option>K20</option>
+                            <option>K21</option>
+                            <option>K22</option>
+                            <option>K23</option>
+                            <option>K24</option>
+                            <option>K25</option>
+                            <option>K26</option>
+                            <option>K27</option>
+                            <option>K28</option>
                         </select>
                     </div>
 

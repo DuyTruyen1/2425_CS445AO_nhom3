@@ -2,7 +2,6 @@
 @extends('Pages.layout.index')
 @section('menu')
 <nav id="sidebar">
-
     <div class="menu dark-mode ">
         <?php if(Auth::user()->category == '3') { ?>
             <!--Logo-->

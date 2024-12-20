@@ -57,8 +57,9 @@ class JobController extends Controller
 
     public function edit(Job $job)
     {
+        $category = category::all()[2];
         // Hiển thị form chỉnh sửa công việc
-        return view('Pages.Company.jobs.edit', compact('job'));
+        return view('Pages.Company.jobs.edit', compact('job', 'category'));
     }
 
     public function update(Request $request, Job $job)
@@ -68,14 +69,16 @@ class JobController extends Controller
             'title' => 'required',
             'description' => 'required',
             'location' => 'required',
-            'salary' => 'required',
-            'job_type' => 'required',
+            'salary' => 'required|numeric', // Đảm bảo salary là số
+            'job_type' => 'required|in:full_time,part_time,internship,freelance', // Kiểm tra job_type có hợp lệ không
         ]);
 
+        // Cập nhật thông tin công việc
         $job->update($request->only('title', 'description', 'location', 'salary', 'job_type'));
 
         return redirect()->route('company.jobs.index')->with('success', 'Job updated successfully!');
     }
+
 
     public function destroy(Job $job)
     {

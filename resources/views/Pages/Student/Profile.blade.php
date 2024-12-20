@@ -1,34 +1,10 @@
 @extends('Pages.layout.menu')
 @section('content')
-<style>
-/* .chose-skill {
-    width: 50%;
-    height: 50px;
-    border: 1px solid;
-} */
-</style>
-
-
-
-
 <div class="container">
     <a class="position-absolute" id="btnCV" href="./Pages/Student/CV/{{Auth::user()->id}}"><button type="reset2" class="btn btn-warning dark-mode" >CV Cá Nhân</button></a>
     <form class="" method="POST" action="./Pages/Student/updateProfile/{{Auth::user()->id}}" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
         <button type="submit" class="btn btn-warning dark-mode" >Ghi nhận</button>
-        {{-- @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <script>
-                toastr.error("{{ $error }}");
-            </script>
-        @endforeach
-    @endif
-    
-    <script>
-        @if (session()->has('success'))
-            toastr.success("{{ session('success') }}");
-        @endif
-    </script> --}}
         <div class="row dark-mode">
             <div class="col-md-6 dark-mode">
                 <div class="card shadow mb-4 dark-mode">

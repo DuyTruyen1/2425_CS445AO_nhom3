@@ -27,7 +27,7 @@
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" placeholder="Nhập email của bạn" value="{{ old('email') }}">
+                <input type="text" name="email" class="form-control" placeholder="Nhập email của bạn" value="{{ old('email') }}">
                 
                 <!-- Hiển thị lỗi cho trường email -->
                 @error('email')

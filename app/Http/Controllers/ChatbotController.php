@@ -17,12 +17,11 @@ class ChatbotController extends Controller
         return view('chatbot', compact('category'));
     }
 
-    // Hàm gửi và nhận phản hồi từ Gemini API
     public function sendChat(Request $request)
     {
         $text = $request->input('input');
 
-        $client = new Client('');
+        $client = new Client('AIzaSyCXOks5tpBn7jzY-2PbKF_GKTIvKeI2I6c');
 
         $response = $client->geminiPro()->generateContent(
             new TextPart($text)
