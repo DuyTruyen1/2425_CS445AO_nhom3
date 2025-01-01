@@ -32,11 +32,11 @@ Trước tiên, bạn cần clone dự án từ GitHub về máy tính của mì
 
 ```bash
 git clone git@github.com:DuyTruyen1/2425_CS445AO_nhom3.git
-Bước 2: Cài đặt các phụ thuộc
+### Bước 2: Cài đặt các phụ thuộc
 Dự án này sử dụng Composer (đối với PHP) và npm (đối với frontend). Bạn cần cài đặt các phụ thuộc bằng cách chạy các lệnh sau:
 composer install
 npm install
-Bước 3: Cấu hình file .env
+### Bước 3: Cấu hình file .env
 - Nếu không có file env thì tạo fille .env , còn nếu thấy file  ".env.example" thì đổi tên thành ".env"
 Chỉnh sửa các thông số trong file .env để phù hợp với môi trường của bạn.
 
@@ -47,13 +47,13 @@ Sao chép mã
 - php artisan cache:clear
 - php artisan config:clear
 - php artisan key:generate
-Bước 4: Tạo cơ sở dữ liệu
+### Bước 4: Tạo cơ sở dữ liệu
 - Tiến hành tạo cơ sở dữ liệu và cấu hình kết nối trong file .env. Bạn có thể tạo cơ sở dữ liệu trực tiếp từ MySQL hoặc sử dụng lệnh Artisan của Laravel để tạo các bảng cơ sở dữ liệu.
 
 - Ở đây tôi có 1 file SQL chứa trong thư mục Database các bạn có thể copy từng câu lệnh và bỏ lên 
 MySQL để tiến hành chạy.
 - php artisan migrate
-Bước 5: Chạy ứng dụng
+### Bước 5: Chạy ứng dụng
 - php artisan serve
 - Ứng dụng sẽ được chạy tại địa chỉ http://localhost:8000/
 Cách sử dụng
