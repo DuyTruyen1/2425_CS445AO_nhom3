@@ -1,66 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Website Quản Lý Profile
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<style>
+    h1 {
+        color: #2c3e50;
+        text-align: center;
+    }
 
-## About Laravel
+    h2 {
+        color: #2980b9;
+        font-size: 1.5em;
+    }
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+    p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    ul {
+        list-style-type: square;
+        padding-left: 20px;
+    }
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: #ecf0f1;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-## Learning Laravel
+    .footer {
+        font-size: 0.9em;
+        text-align: center;
+        color: #7f8c8d;
+        margin-top: 20px;
+    }
+</style>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<div class="container">
+    <h1>Website Quản Lý Profile</h1>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    <h2>Lời nói đầu</h2>
+    <p>
+        Ngày nay, ứng dụng công nghệ thông tin và việc tin học hóa được xem là một trong những yếu tố mang tính quyết định trong hoạt động của các chính phủ, tổ chức, cũng như của các công ty, nhà trường. Nó đóng vai trò hết sức quan trọng, có thể mang lại cho chúng ta rất nhiều lợi ích và thuận tiện trong công việc. Mạng Internet là một trong những sản phẩm có giá trị hết sức lớn lao và ngày càng trở nên một công cụ không thể thiếu, là nền tảng chính cho sự truyền tải, trao đổi thông tin trên toàn cầu.
+    </p>
+    <p>
+        Vì vậy, trong phạm vi môn học này, nhóm chúng em sẽ trình bày về project website quản lý profile. Người tuyển dụng đưa các thông tin tuyển dụng, người ứng tuyển thì luôn luôn cập nhật CV của mình lên website một cách nhanh chóng và ai cũng có thể tiếp cận, tìm kiếm, lọc những thứ mình cần tìm mọi lúc mọi nơi.
+    </p>
+    <p>
+        Trong quá trình làm, nhóm em còn nhiều sai sót. Chúng em mong nhận được những ý kiến đánh giá của thầy và các bạn. Em xin chân thành cảm ơn!
+    </p>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    <h2>Mục lục</h2>
+    <ul>
+        <li><a href="#yêu-cầu-hệ-thống">Yêu cầu hệ thống</a></li>
+        <li><a href="#cài-đặt">Cài đặt</a></li>
+        <li><a href="#cách-sử-dụng">Cách sử dụng</a></li>
+        <li><a href="#đóng-góp">Đóng góp</a></li>
+        <li><a href="#liên-hệ">Liên hệ</a></li>
+    </ul>
 
-## Laravel Sponsors
+    <h2 id="yêu-cầu-hệ-thống">Yêu cầu hệ thống</h2>
+    <p>Dự án này yêu cầu các công nghệ sau:</p>
+    <ul>
+        <li>PHP 8.0 hoặc cao hơn</li>
+        <li>MySQL 5.7 hoặc cao hơn</li>
+        <li>Web Server (Apache,...)</li>
+        <li>Trình duyệt web hỗ trợ HTML5</li>
+    </ul>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    <h2 id="cài-đặt">Cài đặt</h2>
+    <h3>Bước 1: Clone repository từ GitHub</h3>
+    <p>Trước tiên, bạn cần clone dự án từ GitHub về máy tính của mình.</p>
+    <pre><code>git clone git@github.com:DuyTruyen1/2425_CS445AO_nhom3.git</code></pre>
 
-### Premium Partners
+    <h3>Bước 2: Cài đặt các phụ thuộc</h3>
+    <p>Dự án này sử dụng Composer (đối với PHP) và npm (đối với frontend). Bạn cần cài đặt các phụ thuộc bằng cách chạy các lệnh sau:</p>
+    <pre><code>composer install</code></pre>
+    <p>Để cài đặt các phụ thuộc JavaScript, nếu dự án có phần frontend, bạn chạy:</p>
+    <pre><code>npm install</code></pre>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    <h3>Bước 3: Cấu hình file .env</h3>
+    <p>Đảm bảo rằng bạn đã tạo file `.env` từ file `.env.example` và cấu hình các thông tin cần thiết như kết nối cơ sở dữ liệu, ứng dụng...</p>
+    <pre><code>cp .env.example .env</code></pre>
+    <p>Chỉnh sửa các thông số trong file `.env` để phù hợp với môi trường của bạn.</p>
+    <p>Lưu ý nhớ chạy câu lệnh các câu lệnh sau đây.</p>
+     <ul>
+        <li>php artisan cache:clear</li>
+	<li>php artisan config:clear</li>
+	<li>php artisan key:generate</li>
+      </ul>
 
-## Contributing
+    <h3>Bước 4: Tạo cơ sở dữ liệu</h3>
+    <p>Tiến hành tạo cơ sở dữ liệu và cấu hình kết nối trong file `.env`. Bạn có thể tạo cơ sở dữ liệu trực tiếp từ MySQL hoặc sử dụng lệnh Artisan của Laravel để tạo các bảng cơ sở dữ liệu.</p>
+<p>Ở đây tôi có 1 file sql các bạn có thể copy từng câu lệnh à bỏ lên MySQL để tiến hành chạy.</p>
+    <pre><code>php artisan migrate</code></pre>
+    <h3>Bước 5: Chạy ứng dụng</h3>
+    <p>Cuối cùng, bạn có thể chạy ứng dụng bằng cách sử dụng lệnh Artisan:</p>
+    <pre><code>php artisan serve</code></pre>
+    <p>Ứng dụng sẽ được chạy tại địa chỉ <code>http://localhost:8000</code>.</p>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    <h2 id="cách-sử-dụng">Cách sử dụng</h2>
+    <p>Truy cập vào địa chỉ <code>http://localhost:8000</code> để sử dụng ứng dụng. Bạn có thể đăng nhập, cập nhật CV và tìm kiếm thông tin tuyển dụng trên website.</p>
+</div>
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<div class="footer">
+    <p>Chân thành cảm ơn sự quan tâm của bạn!</p>
+</div>
