@@ -47,7 +47,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::put('/users/{id}', [AdminController::class, 'updateUser'])->name('admin.userAcc.update');
     Route::get('feedback', [FeedbackController::class, 'feedback'])->name('feedback');
     Route::get('numbers', [NumberController::class, 'numbers'])->name('numbers');
-    Route::get('deleteUser', [AdminController::class, 'delete_user']);
     Route::get('job', [AdminController::class, 'job'])->name('job');
     Route::get('research', [AdminController::class, 'research'])->name('rs');
 
